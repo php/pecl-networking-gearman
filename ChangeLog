@@ -1,3 +1,7 @@
+Version 2.0.7
+-------------
+- Fixed segfaults in PHP 7.4 caused by free_obj object handler being NULL
+
 Version 2.0.6
 -------------
 - fixing issue with double calling of zval_dtor in set fail callback
