@@ -43,4 +43,6 @@ extern zend_class_entry *gearman_exception_ce;
 void *_php_malloc(size_t size, void *arg);
 void _php_free(void *ptr, void *arg);
 
+static void gearman_free_obj();
+
 #endif  /* __PHP_GEARMAN_H */
