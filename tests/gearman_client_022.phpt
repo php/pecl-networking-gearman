@@ -8,8 +8,8 @@ unserialize(serialize(GearmanClient))
 $i = 0;
 while ($i <= 5) {
     echo $i;
-    $job = new GearmanClient();
-    unserialize(serialize($job));
+    $client = new GearmanClient();
+    unserialize(serialize($client));
     $i++;
 }
 print PHP_EOL;
