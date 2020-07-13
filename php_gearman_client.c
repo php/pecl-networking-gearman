@@ -46,6 +46,7 @@ PHP_FUNCTION(gearman_client_create) {
 
         gearman_client_ctor(INTERNAL_FUNCTION_PARAM_PASSTHRU);
 }
+/* }}} */
 
 inline zend_object *gearman_client_obj_new(zend_class_entry *ce) {
 	gearman_client_obj *intern = ecalloc(1,
@@ -102,6 +103,7 @@ PHP_METHOD(GearmanClient, __destruct)
 
         zend_object_std_dtor(&intern->std);
 }
+/* }}} */
 
 /* {{{ proto int gearman_client_return_code()
    get last gearman_return_t */
