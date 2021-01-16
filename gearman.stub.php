@@ -16,7 +16,7 @@ class GearmanClient {
     public function returnCode(): int {}
 
     /** @alias gearman_client_error */
-    public function error(): string {}
+    public function error(): string|false {}
 
     /** @alias gearman_client_get_errno */
     public function getErrno(): int {}
@@ -143,14 +143,14 @@ class GearmanClient {
 
 }
 
-function gearman_client_return_code(GearmanClient $obj): int {}
-function gearman_client_error(GearmanClient $obj): string {}
-function gearman_client_get_errno(GearmanClient $obj): int {}
-function gearman_client_options(GearmanClient $obj): int {}
+function gearman_client_return_code(GearmanClient $obj): ?int {}
+function gearman_client_error(GearmanClient $obj): null|string|false {}
+function gearman_client_get_errno(GearmanClient $obj): ?int {}
+function gearman_client_options(GearmanClient $obj): ?int {}
 function gearman_client_set_options(GearmanClient $obj, int $option): bool {}
 function gearman_client_add_options(GearmanClient $obj, int $option): bool {}
 function gearman_client_remove_options(GearmanClient $obj, int $option): bool {}
-function gearman_client_timeout(GearmanClient $obj): int {}
+function gearman_client_timeout(GearmanClient $obj): ?int {}
 function gearman_client_set_timeout(GearmanClient $obj, int $timeout): bool {}
 function gearman_client_add_server(GearmanClient $obj, string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
 function gearman_client_add_servers(GearmanClient $obj, string $servers = null, bool $setupExceptionHandler = true): bool {}
@@ -248,7 +248,7 @@ class GearmanTask {
     public function __construct() {}
 
     /** @alias gearman_task_return_code */
-    public function returnCode(): ?int {}
+    public function returnCode(): int {}
 
     /** @alias gearman_task_function_name */
     public function functionName(): bool|string {}

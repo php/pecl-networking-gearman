@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: 83876596992a2d5bc630b6c217f0f52c469872a3 */
+ * Stub hash: c5850721215985dca036c41a5b4a827a15b32f66 */
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_version, 0, 0, IS_STRING, 0)
 ZEND_END_ARG_INFO()
@@ -16,11 +16,11 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_TYPE_MASK_EX(arginfo_gearman_worker_create, 0, 0, GearmanWorker, MAY_BE_FALSE)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_client_return_code, 0, 1, IS_LONG, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_client_return_code, 0, 1, IS_LONG, 1)
 	ZEND_ARG_OBJ_INFO(0, obj, GearmanClient, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_client_error, 0, 1, IS_STRING, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_gearman_client_error, 0, 1, MAY_BE_NULL|MAY_BE_STRING|MAY_BE_FALSE)
 	ZEND_ARG_OBJ_INFO(0, obj, GearmanClient, 0)
 ZEND_END_ARG_INFO()
 
@@ -78,7 +78,9 @@ ZEND_END_ARG_INFO()
 
 #define arginfo_gearman_client_do_low_background arginfo_gearman_client_do_normal
 
-#define arginfo_gearman_client_do_job_handle arginfo_gearman_client_error
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_client_do_job_handle, 0, 1, IS_STRING, 0)
+	ZEND_ARG_OBJ_INFO(0, obj, GearmanClient, 0)
+ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_client_do_status, 0, 1, IS_ARRAY, 0)
 	ZEND_ARG_OBJ_INFO(0, obj, GearmanClient, 0)
@@ -146,7 +148,7 @@ ZEND_END_ARG_INFO()
 
 #define arginfo_gearman_client_clear_callbacks arginfo_gearman_client_wait
 
-#define arginfo_gearman_client_context arginfo_gearman_client_error
+#define arginfo_gearman_client_context arginfo_gearman_client_do_job_handle
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_client_set_context, 0, 2, _IS_BOOL, 0)
 	ZEND_ARG_OBJ_INFO(0, obj, GearmanClient, 0)
@@ -336,7 +338,8 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_GearmanClient_returnCode, 0, 0, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
-#define arginfo_class_GearmanClient_error arginfo_gearman_version
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_class_GearmanClient_error, 0, 0, MAY_BE_STRING|MAY_BE_FALSE)
+ZEND_END_ARG_INFO()
 
 #define arginfo_class_GearmanClient_getErrno arginfo_class_GearmanClient_returnCode
 
@@ -498,7 +501,7 @@ ZEND_END_ARG_INFO()
 
 #define arginfo_class_GearmanTask___construct arginfo_class_GearmanClient___construct
 
-#define arginfo_class_GearmanTask_returnCode arginfo_class_GearmanJob_returnCode
+#define arginfo_class_GearmanTask_returnCode arginfo_class_GearmanClient_returnCode
 
 #define arginfo_class_GearmanTask_functionName arginfo_class_GearmanJob_handle
 
@@ -532,8 +535,7 @@ ZEND_END_ARG_INFO()
 
 #define arginfo_class_GearmanWorker_returnCode arginfo_class_GearmanJob_returnCode
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_class_GearmanWorker_error, 0, 0, MAY_BE_STRING|MAY_BE_FALSE)
-ZEND_END_ARG_INFO()
+#define arginfo_class_GearmanWorker_error arginfo_class_GearmanClient_error
 
 #define arginfo_class_GearmanWorker_getErrno arginfo_class_GearmanTask_dataSize
 
