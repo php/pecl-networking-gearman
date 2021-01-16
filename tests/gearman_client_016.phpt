@@ -1,7 +1,9 @@
 --TEST--
 GearmanClient::doStatus(), gearman_client_do_status()
 --SKIPIF--
-<?php if (!extension_loaded("gearman")) print "skip"; ?>
+<?php if (!extension_loaded("gearman")) print "skip";
+require_once('skipifconnect.inc');
+?>
 --FILE--
 <?php 
 

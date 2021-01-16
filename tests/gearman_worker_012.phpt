@@ -2,9 +2,7 @@
 gearman_worker_register(), gearman_worker_unregister(), gearman_worker_unregister_all()
 --SKIPIF--
 <?php if (!extension_loaded("gearman")) print "skip";
-/*
-TODO - requires gearmand to be running
-*/
+require_once('skipifconnect.inc');
 ?>
 --FILE--
 <?php 

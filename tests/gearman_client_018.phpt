@@ -1,7 +1,9 @@
 --TEST--
 GearmanClient::jobStatusByUniqueKey(), gearman_client_job_status_by_unique_key()
 --SKIPIF--
-<?php if (!extension_loaded("gearman")) print "skip"; ?>
+<?php if (!extension_loaded("gearman")) print "skip";
+require_once('skipifconnect.inc');
+?>
 --FILE--
 <?php 
 

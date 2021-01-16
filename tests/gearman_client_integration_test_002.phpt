@@ -3,7 +3,9 @@ GearmanClient::setStatusCallback(), gearman_client_set_status_callback(),
 GearmanClient::addTaskStatus(), gearman_client_add_task_status(),
 GearmanClient::runTasks(), gearman_client_run_tasks()
 --SKIPIF--
-<?php if (!extension_loaded("gearman")) print "skip"; ?>
+<?php if (!extension_loaded("gearman")) print "skip";
+require_once('skipifconnect.inc');
+?>
 --FILE--
 <?php
 function reverse_status($task, $context)

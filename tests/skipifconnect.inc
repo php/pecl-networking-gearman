@@ -1,5 +1,7 @@
 <?php
 
+if (getenv("SKIP_ONLINE_TESTS")) die("skip online test");
+
 require_once('connect.inc');
 
 $sock = fsockopen($host, $port);

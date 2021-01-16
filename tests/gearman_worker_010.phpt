@@ -1,10 +1,8 @@
 --TEST--
 gearman_worker_add_server(), gearman_worker_add_servers()
 --SKIPIF--
-<?php if (!extension_loaded("gearman")) print "skip"; 
-/*
-TODO - requires gearmand to be running
-*/
+<?php if (!extension_loaded("gearman")) print "skip";
+require_once('skipifconnect.inc');
 ?>
 --FILE--
 <?php 

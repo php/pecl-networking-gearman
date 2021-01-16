@@ -1,7 +1,9 @@
 --TEST--
 GearmanClient::wait(), gearman_client_wait()
 --SKIPIF--
-<?php if (!extension_loaded("gearman")) print "skip"; ?>
+<?php if (!extension_loaded("gearman")) print "skip";
+require_once('skipifconnect.inc');
+?>
 --FILE--
 <?php 
 
