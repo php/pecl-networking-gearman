@@ -18,7 +18,7 @@ if ($pid == -1) {
     // Parent. This is the worker
     $worker = new GearmanWorker();
     print "addServer: " . var_export($worker->addServer($host, $port), true) . PHP_EOL;
-    print "setTimeout: " . var_export($worker->setTimeout(5), true) . PHP_EOL;
+    print "setTimeout: " . var_export($worker->setTimeout(100), true) . PHP_EOL;
     print "register: " . var_export($worker->register($job_name, 5), true) . PHP_EOL;
     print "register: " . var_export($worker->register($job_name . "1", 5), true) . PHP_EOL;
     print "register: " . var_export($worker->register($job_name . "2", 5), true) . PHP_EOL;
