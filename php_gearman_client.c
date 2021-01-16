@@ -71,18 +71,31 @@ PHP_METHOD(GearmanClient, __construct)
 }
 /* }}} */
 
-void gearman_client_free_obj(zend_object *object) {
+/* {{{ proto object GearmanClient::__destruct()
+   cleans up GearmanClient object */
+PHP_METHOD(GearmanClient, __destruct)
+{
         char *context = NULL;
-        gearman_client_obj *intern = gearman_client_fetch_object(object);
+        gearman_client_obj *intern = Z_GEARMAN_CLIENT_P(getThis());
         if (!intern) {
                 return;
         }
 
-        context = gearman_client_context(&(intern->client));
-        efree(context);
-
         if (intern->flags & GEARMAN_CLIENT_OBJ_CREATED) {
+                context = gearman_client_context(&(intern->client));
+                efree(context);
+
                 gearman_client_free(&intern->client);
+                intern->flags &= ~GEARMAN_CLIENT_OBJ_CREATED;
+        }
+}
+/* }}} */
+
+void gearman_client_free_obj(zend_object *object) {
+        gearman_client_obj *intern = gearman_client_fetch_object(object);
+
+        if (!intern) {
+                return;
         }
 
         // Clear Callbacks
