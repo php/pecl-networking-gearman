@@ -44,20 +44,102 @@
    <file name="CREDITS" role="doc" />
    <file name="LICENSE" role="doc" />
    <file name="ChangeLog" role="doc" />
+   <file name="TODO" role="doc" />
    <file name="test_client.php" role="doc" />
    <file name="test_worker.php" role="doc" />
    <file name="config.m4" role="src" />
    <file name="php_gearman.c" role="src" />
    <file name="php_gearman.h" role="src" />
+   <file name="php_gearman_client.c" role="src" />
+   <file name="php_gearman_client.h" role="src" />
+   <file name="const_gen.sh" role="src" />
+   <file name="gearman_arginfo.h" role="src" />
+   <file name="gearman.stub.php" role="src" />
+   <file name="php-gearman.ini" role="src" />
+   <file name="php_gearman_job.c" role="src" />
+   <file name="php_gearman_job.h" role="src" />
+   <file name="php_gearman_task.c" role="src" />
+   <file name="php_gearman_task.h" role="src" />
+   <file name="php_gearman_worker.c" role="src" />
+   <file name="php_gearman_worker.h" role="src" />
    <file name="tests/gearman_001.phpt" role="test" />
    <file name="tests/gearman_002.phpt" role="test" />
+   <file name="tests/connect.inc" role="test" />
+   <file name="tests/gearman_001.phpt" role="test" />
+   <file name="tests/gearman_002.phpt" role="test" />
+   <file name="tests/gearman_client_001.phpt" role="test" />
+   <file name="tests/gearman_client_002.phpt" role="test" />
+   <file name="tests/gearman_client_003.phpt" role="test" />
+   <file name="tests/gearman_client_004.phpt" role="test" />
+   <file name="tests/gearman_client_005.phpt" role="test" />
+   <file name="tests/gearman_client_006.phpt" role="test" />
+   <file name="tests/gearman_client_007.phpt" role="test" />
+   <file name="tests/gearman_client_008.phpt" role="test" />
+   <file name="tests/gearman_client_009.phpt" role="test" />
+   <file name="tests/gearman_client_010.phpt" role="test" />
+   <file name="tests/gearman_client_011.phpt" role="test" />
+   <file name="tests/gearman_client_012.phpt" role="test" />
+   <file name="tests/gearman_client_013.phpt" role="test" />
+   <file name="tests/gearman_client_014.phpt" role="test" />
+   <file name="tests/gearman_client_015.phpt" role="test" />
+   <file name="tests/gearman_client_016.phpt" role="test" />
+   <file name="tests/gearman_client_017.phpt" role="test" />
+   <file name="tests/gearman_client_018.phpt" role="test" />
+   <file name="tests/gearman_client_019.phpt" role="test" />
+   <file name="tests/gearman_client_020.phpt" role="test" />
+   <file name="tests/gearman_client_021.phpt" role="test" />
+   <file name="tests/gearman_client_022.phpt" role="test" />
+   <file name="tests/gearman_client_integration_test_001.phpt" role="test" />
+   <file name="tests/gearman_client_integration_test_002.phpt" role="test" />
+   <file name="tests/gearman_job_001.phpt" role="test" />
+   <file name="tests/gearman_job_002.phpt" role="test" />
+   <file name="tests/gearman_job_003.phpt" role="test" />
+   <file name="tests/gearman_job_integration_test_001.phpt" role="test" />
+   <file name="tests/gearman_job_integration_test_002.phpt" role="test" />
+   <file name="tests/gearman_job_integration_test_003.phpt" role="test" />
+   <file name="tests/gearman_job_integration_test_004.phpt" role="test" />
+   <file name="tests/gearman_job_integration_test_005.phpt" role="test" />
+   <file name="tests/gearman_job_integration_test_006.phpt" role="test" />
+   <file name="tests/gearman_job_integration_test_007.phpt" role="test" />
+   <file name="tests/gearman_job_integration_test_008.phpt" role="test" />
+   <file name="tests/gearman_job_integration_test_009.phpt" role="test" />
+   <file name="tests/gearman_job_integration_test_010.phpt" role="test" />
+   <file name="tests/gearman_task_001.phpt" role="test" />
+   <file name="tests/gearman_task_002.phpt" role="test" />
+   <file name="tests/gearman_task_003.phpt" role="test" />
+   <file name="tests/gearman_task_004.phpt" role="test" />
+   <file name="tests/gearman_task_005.phpt" role="test" />
+   <file name="tests/gearman_task_006.phpt" role="test" />
+   <file name="tests/gearman_tasks_integration_test_001.phpt" role="test" />
+   <file name="tests/gearman_tasks_integration_test_002.phpt" role="test" />
+   <file name="tests/gearman_worker_001.phpt" role="test" />
+   <file name="tests/gearman_worker_002.phpt" role="test" />
+   <file name="tests/gearman_worker_003.phpt" role="test" />
+   <file name="tests/gearman_worker_004.phpt" role="test" />
+   <file name="tests/gearman_worker_005.phpt" role="test" />
+   <file name="tests/gearman_worker_006.phpt" role="test" />
+   <file name="tests/gearman_worker_007.phpt" role="test" />
+   <file name="tests/gearman_worker_008.phpt" role="test" />
+   <file name="tests/gearman_worker_009.phpt" role="test" />
+   <file name="tests/gearman_worker_010.phpt" role="test" />
+   <file name="tests/gearman_worker_011.phpt" role="test" />
+   <file name="tests/gearman_worker_012.phpt" role="test" />
+   <file name="tests/gearman_worker_013.phpt" role="test" />
+   <file name="tests/gearman_worker_014.phpt" role="test" />
+   <file name="tests/gearman_worker_015.phpt" role="test" />
+   <file name="tests/gearman_worker_016.phpt" role="test" />
+   <file name="tests/gearman_worker_017.phpt" role="test" />
+   <file name="tests/gearman_worker_integration_test_001.phpt" role="test" />
+   <file name="tests/skipifconnect.inc" role="test" />
+   <file name="tests/skipif.inc" role="test" />
+   <file name="tests/skipifversion.inc" role="test" />
   </dir>
  </contents>
  <dependencies>
   <required>
    <php>
     <min>7.0.0</min>
-    <max>8.0.99</max>
+    <max>8.1.99</max>
     <exclude>6.0.0</exclude>
    </php>
    <pearinstaller>
