@@ -1179,13 +1179,21 @@ PHP_FUNCTION(gearman_client_clear_callbacks) {
         gearman_client_clear_fn(&obj->client);
 
         zval_dtor(&obj->zworkload_fn);
+        ZVAL_UNDEF(&obj->zworkload_fn);
         zval_dtor(&obj->zcreated_fn);
+        ZVAL_UNDEF(&obj->zcreated_fn);
         zval_dtor(&obj->zdata_fn);
+        ZVAL_UNDEF(&obj->zdata_fn);
         zval_dtor(&obj->zwarning_fn);
+        ZVAL_UNDEF(&obj->zwarning_fn);
         zval_dtor(&obj->zstatus_fn);
+        ZVAL_UNDEF(&obj->zstatus_fn);
         zval_dtor(&obj->zcomplete_fn);
+        ZVAL_UNDEF(&obj->zcomplete_fn);
         zval_dtor(&obj->zexception_fn);
+        ZVAL_UNDEF(&obj->zexception_fn);
         zval_dtor(&obj->zfail_fn);
+        ZVAL_UNDEF(&obj->zfail_fn);
 
         RETURN_TRUE;
 }
