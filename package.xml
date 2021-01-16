@@ -28,7 +28,7 @@
  </stability>
  <license uri="http://www.php.net/license">PHP</license>
  <notes>
-- All callbacks should have a reference pointer (Special thanks to guilhermeblanco)
+PHP 8.0.x is now supported
  </notes>
  <contents>
   <dir name="/">
@@ -150,6 +150,7 @@
  <providesextension>gearman</providesextension>
  <extsrcrelease />
  <changelog>
+
   <release>
    <stability>
     <release>stable</release>
@@ -165,6 +166,7 @@
 - Fix a serialization segfault
    </notes>
   </release>
+
   <release>
    <stability>
     <release>stable</release>
@@ -179,6 +181,7 @@
 - All callbacks should have a reference pointer (Special thanks to guilhermeblanco)
    </notes>
   </release>
+
   <release>
    <stability>
     <release>stable</release>
@@ -196,6 +199,7 @@
 - Add support for gearman_client_unique_status() method
    </notes>
   </release>
+
   <release>
    <stability>
     <release>stable</release>
@@ -213,6 +217,7 @@
 - Make phpversion('gearman') return the real version
    </notes>
   </release>
+
   <release>
    <stability>
     <release>stable</release>
@@ -227,6 +232,7 @@
 - Additional fix for PECL Bug #59423 (GearmanWorker::wait and GearmanWorker::work are spamming the log with warnings.)
    </notes>
   </release>
+
   <release>
    <stability>
     <release>stable</release>
@@ -241,6 +247,7 @@
 - Updates for PHP 5.4
    </notes>
   </release>
+
   <release>
    <stability>
     <release>stable</release>
@@ -255,6 +262,7 @@
 - Fixed PECL Bug #60438 (wrong version number in php_gearman.h)
    </notes>
   </release>
+
   <release>
    <stability>
     <release>stable</release>
@@ -273,6 +281,7 @@
  - Now requires libgearman 0.21 or greater
    </notes>
   </release>
+
   <release>
    <stability>
     <release>beta</release>
@@ -292,6 +301,7 @@
 - Fixed PECL Bug #17539 (Segmentation fault on calling error() of a fresh worker).  Patch by jiayong.
    </notes>
   </release>
+
   <release>
    <stability>
     <release>beta</release>
@@ -307,6 +317,7 @@
 - Had to remove some of the low level code I was working on.
    </notes>
   </release>
+
   <release>
    <stability>
     <release>beta</release>
@@ -326,6 +337,7 @@
 - Added stubs for new functions, fixed tests, fixed some of the existing functions from changes.
    </notes>
   </release>
+
   <release>
    <stability>
     <release>beta</release>
@@ -343,6 +355,7 @@
 - Replaced errno with getErrno
    </notes>
   </release>
+
   <release>
    <stability>
     <release>beta</release>
@@ -362,6 +375,7 @@
 - Other small bug fixes
    </notes>
   </release>
+
   <release>
    <stability>
     <release>beta</release>
@@ -379,5 +393,6 @@
 - Fixed compile issues with PHP 5.1 and 5.3
    </notes>
   </release>
+
  </changelog>
 </package>
