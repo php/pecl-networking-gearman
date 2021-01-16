@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: 65cf41fa0f919b8cfa946208297d23ad20ce6a0d */
+ * Stub hash: 83876596992a2d5bc630b6c217f0f52c469872a3 */
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_version, 0, 0, IS_STRING, 0)
 ZEND_END_ARG_INFO()
@@ -333,8 +333,6 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_class_GearmanClient___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-#define arginfo_class_GearmanClient___destruct arginfo_class_GearmanClient___construct
-
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_GearmanClient_returnCode, 0, 0, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
@@ -457,8 +455,6 @@ ZEND_END_ARG_INFO()
 
 #define arginfo_class_GearmanClient_enableExceptionHandler arginfo_class_GearmanClient_wait
 
-#define arginfo_class_GearmanJob___destruct arginfo_class_GearmanClient___construct
-
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_GearmanJob_returnCode, 0, 0, IS_LONG, 1)
 ZEND_END_ARG_INFO()
 
@@ -502,8 +498,6 @@ ZEND_END_ARG_INFO()
 
 #define arginfo_class_GearmanTask___construct arginfo_class_GearmanClient___construct
 
-#define arginfo_class_GearmanTask___destruct arginfo_class_GearmanClient___construct
-
 #define arginfo_class_GearmanTask_returnCode arginfo_class_GearmanJob_returnCode
 
 #define arginfo_class_GearmanTask_functionName arginfo_class_GearmanJob_handle
@@ -535,8 +529,6 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_class_GearmanTask_recvData, 0, 1
 ZEND_END_ARG_INFO()
 
 #define arginfo_class_GearmanWorker___construct arginfo_class_GearmanClient___construct
-
-#define arginfo_class_GearmanWorker___destruct arginfo_class_GearmanClient___construct
 
 #define arginfo_class_GearmanWorker_returnCode arginfo_class_GearmanJob_returnCode
 
@@ -693,12 +685,8 @@ ZEND_FUNCTION(gearman_worker_add_function);
 ZEND_FUNCTION(gearman_worker_work);
 ZEND_FUNCTION(gearman_worker_ping);
 ZEND_METHOD(GearmanClient, __construct);
-ZEND_METHOD(GearmanClient, __destruct);
-ZEND_METHOD(GearmanJob, __destruct);
 ZEND_METHOD(GearmanTask, __construct);
-ZEND_METHOD(GearmanTask, __destruct);
 ZEND_METHOD(GearmanWorker, __construct);
-ZEND_METHOD(GearmanWorker, __destruct);
 
 
 static const zend_function_entry ext_functions[] = {
@@ -801,7 +789,6 @@ static const zend_function_entry ext_functions[] = {
 
 static const zend_function_entry class_GearmanClient_methods[] = {
 	ZEND_ME(GearmanClient, __construct, arginfo_class_GearmanClient___construct, ZEND_ACC_PUBLIC)
-	ZEND_ME(GearmanClient, __destruct, arginfo_class_GearmanClient___destruct, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(returnCode, gearman_client_return_code, arginfo_class_GearmanClient_returnCode, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(error, gearman_client_error, arginfo_class_GearmanClient_error, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(getErrno, gearman_client_get_errno, arginfo_class_GearmanClient_getErrno, ZEND_ACC_PUBLIC)
@@ -850,7 +837,6 @@ static const zend_function_entry class_GearmanClient_methods[] = {
 
 
 static const zend_function_entry class_GearmanJob_methods[] = {
-	ZEND_ME(GearmanJob, __destruct, arginfo_class_GearmanJob___destruct, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(returnCode, gearman_job_return_code, arginfo_class_GearmanJob_returnCode, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(setReturn, gearman_job_set_return, arginfo_class_GearmanJob_setReturn, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(sendData, gearman_job_send_data, arginfo_class_GearmanJob_sendData, ZEND_ACC_PUBLIC)
@@ -870,7 +856,6 @@ static const zend_function_entry class_GearmanJob_methods[] = {
 
 static const zend_function_entry class_GearmanTask_methods[] = {
 	ZEND_ME(GearmanTask, __construct, arginfo_class_GearmanTask___construct, ZEND_ACC_PUBLIC)
-	ZEND_ME(GearmanTask, __destruct, arginfo_class_GearmanTask___destruct, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(returnCode, gearman_task_return_code, arginfo_class_GearmanTask_returnCode, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(functionName, gearman_task_function_name, arginfo_class_GearmanTask_functionName, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(unique, gearman_task_unique, arginfo_class_GearmanTask_unique, ZEND_ACC_PUBLIC)
@@ -889,7 +874,6 @@ static const zend_function_entry class_GearmanTask_methods[] = {
 
 static const zend_function_entry class_GearmanWorker_methods[] = {
 	ZEND_ME(GearmanWorker, __construct, arginfo_class_GearmanWorker___construct, ZEND_ACC_PUBLIC)
-	ZEND_ME(GearmanWorker, __destruct, arginfo_class_GearmanWorker___destruct, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(returnCode, gearman_worker_return_code, arginfo_class_GearmanWorker_returnCode, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(error, gearman_worker_error, arginfo_class_GearmanWorker_error, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(getErrno, gearman_worker_errno, arginfo_class_GearmanWorker_getErrno, ZEND_ACC_PUBLIC)

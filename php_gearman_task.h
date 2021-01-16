@@ -26,6 +26,7 @@
 #include <libgearman-1.0/interface/status.h>
 #include <libgearman-1.0/status.h>
 
+void gearman_task_free_obj(zend_object *object);
 zend_object *gearman_task_obj_new(zend_class_entry *ce);
 extern zend_class_entry *gearman_task_ce;
 extern zend_object_handlers gearman_task_obj_handlers;
@@ -60,20 +61,5 @@ gearman_return_t _php_task_status_fn(gearman_task_st *task);
 gearman_return_t _php_task_complete_fn(gearman_task_st *task);
 gearman_return_t _php_task_exception_fn(gearman_task_st *task);
 gearman_return_t _php_task_fail_fn(gearman_task_st *task);
-
-PHP_METHOD(GearmanTask, __construct);
-PHP_METHOD(GearmanTask, __destruct);
-PHP_FUNCTION(gearman_task_return_code);
-PHP_FUNCTION(gearman_task_function_name);
-PHP_FUNCTION(gearman_task_unique);
-PHP_FUNCTION(gearman_task_job_handle);
-PHP_FUNCTION(gearman_task_is_known);
-PHP_FUNCTION(gearman_task_is_running);
-PHP_FUNCTION(gearman_task_numerator);
-PHP_FUNCTION(gearman_task_denominator);
-PHP_FUNCTION(gearman_task_data);
-PHP_FUNCTION(gearman_task_data_size);
-PHP_FUNCTION(gearman_task_send_workload);
-PHP_FUNCTION(gearman_task_recv_data);
 
 #endif  /* __PHP_GEARMAN_TASK_H */

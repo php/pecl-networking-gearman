@@ -11,7 +11,6 @@ function gearman_worker_create(): GearmanWorker|false {}
 class GearmanClient {
 
     public function __construct() {}
-    public function __destruct() {}
 
     /** @alias gearman_client_return_code */
     public function returnCode(): int {}
@@ -190,8 +189,6 @@ function gearman_client_enable_exception_handler(GearmanClient $obj): bool {}
 
 class GearmanJob {
 
-    public function __destruct() {}
-
     /** @alias gearman_job_return_code */
     public function returnCode(): ?int {}
 
@@ -250,8 +247,6 @@ class GearmanTask {
 
     public function __construct() {}
 
-    public function __destruct() {}
-
     /** @alias gearman_task_return_code */
     public function returnCode(): ?int {}
 
@@ -304,8 +299,6 @@ function gearman_task_recv_data(GearmanTask $obj, int $data_len): bool|array {}
 
 class GearmanWorker {
     public function __construct() {}
-
-    public function __destruct() {}
 
     /** @alias gearman_worker_return_code */
     public function returnCode(): ?int {}

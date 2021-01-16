@@ -28,6 +28,7 @@
 extern zend_class_entry *gearman_job_ce;
 extern zend_object_handlers gearman_job_obj_handlers;
 
+void gearman_job_free_obj(zend_object *object);
 zend_object *gearman_job_obj_new(zend_class_entry *ce);
 
 typedef enum {
@@ -35,29 +36,14 @@ typedef enum {
 } gearman_job_obj_flags_t;
 
 typedef struct {
-        gearman_return_t ret; 
+        gearman_return_t ret;
         gearman_job_obj_flags_t flags;
         gearman_job_st *job;
 
-        zend_object std; 
+        zend_object std;
 } gearman_job_obj;
 
 gearman_job_obj *gearman_job_fetch_object(zend_object *obj);
 #define Z_GEARMAN_JOB_P(zv) gearman_job_fetch_object(Z_OBJ_P((zv)))
-
-PHP_METHOD(GearmanJob, __destruct);
-PHP_FUNCTION(gearman_job_return_code);
-PHP_FUNCTION(gearman_job_set_return);
-PHP_FUNCTION(gearman_job_send_data);
-PHP_FUNCTION(gearman_job_send_warning);
-PHP_FUNCTION(gearman_job_send_status);
-PHP_FUNCTION(gearman_job_send_complete);
-PHP_FUNCTION(gearman_job_send_exception);
-PHP_FUNCTION(gearman_job_send_fail);
-PHP_FUNCTION(gearman_job_handle);
-PHP_FUNCTION(gearman_job_function_name);
-PHP_FUNCTION(gearman_job_unique);
-PHP_FUNCTION(gearman_job_workload);
-PHP_FUNCTION(gearman_job_workload_size);
 
 #endif  /* __PHP_GEARMAN_JOB_H */

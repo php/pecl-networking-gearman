@@ -30,6 +30,7 @@
 extern zend_class_entry *gearman_worker_ce;
 extern zend_object_handlers gearman_worker_obj_handlers;
 
+void gearman_worker_free_obj(zend_object *object);
 zend_object *gearman_worker_obj_new(zend_class_entry *ce);
 
 typedef struct {
@@ -43,39 +44,15 @@ typedef enum {
 } gearman_worker_obj_flags_t;
 
 typedef struct {
-        gearman_return_t ret; 
+        gearman_return_t ret;
         gearman_worker_obj_flags_t flags;
         gearman_worker_st worker;
         zval cb_list;
 
-        zend_object std; 
+        zend_object std;
 } gearman_worker_obj;
 
 gearman_worker_obj *gearman_worker_fetch_object(zend_object *obj);
 #define Z_GEARMAN_WORKER_P(zv) gearman_worker_fetch_object(Z_OBJ_P((zv)))
-
-PHP_FUNCTION(gearman_worker_create);
-PHP_METHOD(GearmanWorker, __construct);
-PHP_METHOD(GearmanWorker, __destruct);
-PHP_FUNCTION(gearman_worker_return_code);
-PHP_FUNCTION(gearman_worker_error);
-PHP_FUNCTION(gearman_worker_errno);
-PHP_FUNCTION(gearman_worker_options);
-PHP_FUNCTION(gearman_worker_set_options);
-PHP_FUNCTION(gearman_worker_add_options);
-PHP_FUNCTION(gearman_worker_remove_options);
-PHP_FUNCTION(gearman_worker_timeout);
-PHP_FUNCTION(gearman_worker_set_timeout);
-PHP_FUNCTION(gearman_worker_set_id);
-PHP_FUNCTION(gearman_worker_add_server);
-PHP_FUNCTION(gearman_worker_add_servers);
-PHP_FUNCTION(gearman_worker_wait);
-PHP_FUNCTION(gearman_worker_register);
-PHP_FUNCTION(gearman_worker_unregister);
-PHP_FUNCTION(gearman_worker_unregister_all);
-PHP_FUNCTION(gearman_worker_grab_job);
-PHP_FUNCTION(gearman_worker_add_function);
-PHP_FUNCTION(gearman_worker_work);
-PHP_FUNCTION(gearman_worker_ping);
 
 #endif  /* __PHP_GEARMAN_WORKER_H */
