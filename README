@@ -10,7 +10,7 @@ Requirements
     * For the 1.0.* versions, libgearman v0.21 or greater
     * For the 1.1.* versions, libgearman v1.1.0 or greater
     * For the 2.0.* versions, testing is done against libgearman v1.1.8 and PHP 7.0-7.4
-    * For the 2.1.* versions, testing is done against libgearman v1.1.8 and PHP 7.3+
+    * For the 2.1.* versions, testing is done against libgearman v1.1.18 and PHP 7.0-8.0
 
 The Gearman PHP Extension requires the Gearman C server and library package
 to be installed. You can download the latest from:
