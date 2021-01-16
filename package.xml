@@ -16,11 +16,11 @@
   <email>hradtke@php.net</email>
   <active>yes</active>
  </lead>
- <date>2013-08-28</date>
+ <date>2021-01-16</date>
  <time>22:00:00</time>
  <version>
-  <release>1.1.2</release>
-  <api>1.1.2</api>
+  <release>2.1.0</release>
+  <api>2.1.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -56,8 +56,8 @@
  <dependencies>
   <required>
    <php>
-    <min>5.1.0</min>
-    <max>6.0.0</max>
+    <min>7.0.0</min>
+    <max>8.0.99</max>
     <exclude>6.0.0</exclude>
    </php>
    <pearinstaller>
@@ -68,6 +68,21 @@
  <providesextension>gearman</providesextension>
  <extsrcrelease />
  <changelog>
+  <release>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <version>
+    <release>2.1.0</release>
+    <api>2.1.0</api>
+   </version>
+   <date>2021-01-16</date>
+   <notes>
+- PHP 8.0 Support
+- Fix a serialization segfault
+   </notes>
+  </release>
   <release>
    <stability>
     <release>stable</release>
