@@ -98,7 +98,7 @@ zend_object *gearman_worker_obj_new(zend_class_entry *ce) {
 	return &intern->std;
 }
 
-/* {{{ proto int gearman_worker_return_code()
+/* {{{ proto ?int gearman_worker_return_code()
    get last gearman_return_t */
 PHP_FUNCTION(gearman_worker_return_code) {
         gearman_worker_obj *obj;
@@ -106,13 +106,13 @@ PHP_FUNCTION(gearman_worker_return_code) {
 
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O", &zobj, gearman_worker_ce) == FAILURE) {
                 RETURN_NULL();
-        }    
+        }
         obj = Z_GEARMAN_WORKER_P(zobj);
         RETURN_LONG(obj->ret);
 }
 /* }}} */
 
-/* {{{ proto string gearman_worker_error(object worker)
+/* {{{ proto string|false gearman_worker_error(object worker)
    Return an error string for the last error encountered. */
 PHP_FUNCTION(gearman_worker_error) {
         char *error;
@@ -121,19 +121,19 @@ PHP_FUNCTION(gearman_worker_error) {
 
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O", &zobj, gearman_worker_ce) == FAILURE) {
                 RETURN_FALSE;
-        }    
+        }
         obj = Z_GEARMAN_WORKER_P(zobj);
 
         error = (char *)gearman_worker_error(&(obj->worker));
         if (error) {
                 RETURN_STRING(error);
-        }    
+        }
 
         RETURN_FALSE;
 }
 /* }}} */
 
-/* {{{ proto int gearman_worker_errno(object worker)
+/* {{{ proto int|false gearman_worker_errno(object worker)
    Value of errno in the case of a GEARMAN_ERRNO return value. */
 PHP_FUNCTION(gearman_worker_errno) {
         zval *zobj;
@@ -141,10 +141,10 @@ PHP_FUNCTION(gearman_worker_errno) {
 
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O", &zobj, gearman_worker_ce) == FAILURE) {
                 RETURN_FALSE;
-        }    
+        }
         obj = Z_GEARMAN_WORKER_P(zobj);
 
-        RETURN_LONG(gearman_worker_errno(&(obj->worker)))
+        RETURN_LONG(gearman_worker_errno(&(obj->worker)));
 }
 /* }}} */
 
@@ -156,10 +156,10 @@ PHP_FUNCTION(gearman_worker_options) {
 
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O", &zobj, gearman_worker_ce) == FAILURE) {
                 RETURN_NULL();
-        }    
+        }
         obj = Z_GEARMAN_WORKER_P(zobj);
 
-        RETURN_LONG(gearman_worker_options(&(obj->worker)))
+        RETURN_LONG(gearman_worker_options(&(obj->worker)));
 }
 /* }}} */
 
@@ -222,10 +222,10 @@ PHP_FUNCTION(gearman_worker_timeout) {
 
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O", &zobj, gearman_worker_ce) == FAILURE) {
                 RETURN_NULL();
-        }    
+        }
         obj = Z_GEARMAN_WORKER_P(zobj);
 
-        RETURN_LONG(gearman_worker_timeout(&(obj->worker)))
+        RETURN_LONG(gearman_worker_timeout(&(obj->worker)));
 }
 /* }}} */
 
@@ -238,7 +238,7 @@ PHP_FUNCTION(gearman_worker_set_timeout) {
 
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "Ol", &zobj, gearman_worker_ce, &timeout) == FAILURE) {
                 RETURN_FALSE;
-        }    
+        }
         obj = Z_GEARMAN_WORKER_P(zobj);
 
         gearman_worker_set_timeout(&(obj->worker), timeout);
@@ -251,18 +251,18 @@ PHP_FUNCTION(gearman_worker_set_timeout) {
 PHP_FUNCTION(gearman_worker_set_id) {
         zval *zobj;
         gearman_worker_obj *obj;
-        char *id; 
+        char *id;
         size_t id_len;
 
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "Os", &zobj, gearman_worker_ce,
                                                         &id, &id_len) == FAILURE) {
                 RETURN_FALSE;
-        }    
+        }
         obj = Z_GEARMAN_WORKER_P(zobj);
 
         if(gearman_failed(gearman_worker_set_identifier(&(obj->worker), id, id_len))) {
                 RETURN_FALSE;
-        }    
+        }
 
         RETURN_TRUE;
 }
@@ -282,8 +282,8 @@ PHP_FUNCTION(gearman_worker_add_server) {
                                                                 &host, &host_len,
                                                                 &port
                                                                 ) == FAILURE) {
-                RETURN_FALSE;                                        
-        }            
+                RETURN_FALSE;
+        }
         obj = Z_GEARMAN_WORKER_P(zobj);
 
         obj->ret = gearman_worker_add_server(&obj->worker, host, port);
@@ -366,14 +366,14 @@ PHP_FUNCTION(gearman_worker_register) {
         gearman_worker_obj *obj;
         char *function_name;
         size_t function_name_len;
-        zend_long timeout = 0; 
+        zend_long timeout = 0;
 
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "Os|l", &zobj, gearman_worker_ce,
                                                         &function_name, &function_name_len,
                                                         &timeout
                                                         ) == FAILURE) {
                 RETURN_FALSE;
-        }    
+        }
         obj = Z_GEARMAN_WORKER_P(zobj);
 
         obj->ret = gearman_worker_register(&(obj->worker), function_name, timeout);
@@ -381,7 +381,7 @@ PHP_FUNCTION(gearman_worker_register) {
                 php_error_docref(NULL, E_WARNING, "%s",
                                                  gearman_worker_error(&(obj->worker)));
                 RETURN_FALSE;
-        }    
+        }
 
         RETURN_TRUE;
 }
@@ -445,7 +445,7 @@ PHP_FUNCTION(gearman_worker_grab_job) {
 
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O", &zobj, gearman_worker_ce) == FAILURE) {
                 RETURN_FALSE;
-        }    
+        }
         obj = Z_GEARMAN_WORKER_P(zobj);
 
         object_init_ex(return_value, gearman_job_ce);
@@ -457,7 +457,7 @@ PHP_FUNCTION(gearman_worker_grab_job) {
                                                  gearman_worker_error(&(obj->worker)));
                 zval_dtor(return_value);
                 RETURN_FALSE;
-        }    
+        }
 
         job->flags |= GEARMAN_JOB_OBJ_CREATED;
 }
@@ -497,7 +497,7 @@ static void *_php_worker_function_callback(gearman_job_st *job,
 
         jobj->ret = GEARMAN_SUCCESS;
 
-        if (call_user_function_ex(EG(function_table), NULL, &worker_cb->zcall, &retval, param_count, argv, 0, NULL) != SUCCESS) {
+        if (call_user_function(EG(function_table), NULL, &worker_cb->zcall, &retval, param_count, argv) != SUCCESS) {
                 php_error_docref(NULL,
                                 E_WARNING,
                                 "Could not call the function %s",
