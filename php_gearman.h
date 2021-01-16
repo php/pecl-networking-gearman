@@ -45,6 +45,10 @@ void _php_free(void *ptr, void *arg);
 
 /* backward compat macros */
 
+#ifndef ZVAL_EMPTY_ARRAY
+#define ZVAL_EMPTY_ARRAY(value)         array_init(value)
+#endif
+
 #ifndef RETVAL_EMPTY_ARRAY
 #define RETVAL_EMPTY_ARRAY()            ZVAL_EMPTY_ARRAY(return_value)
 #endif
