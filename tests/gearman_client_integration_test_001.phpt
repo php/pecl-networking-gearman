@@ -1,7 +1,10 @@
 --TEST--
 
 --SKIPIF--
-<?php if (!extension_loaded("gearman")) print "skip"; ?>
+<?php
+require_once('skipif.inc');
+require_once('skipifconnect.inc');
+?>
 --FILE--
 <?php
 
