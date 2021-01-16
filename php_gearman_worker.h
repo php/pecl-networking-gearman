@@ -30,7 +30,6 @@
 extern zend_class_entry *gearman_worker_ce;
 extern zend_object_handlers gearman_worker_obj_handlers;
 
-void gearman_worker_free_obj(zend_object *object);
 zend_object *gearman_worker_obj_new(zend_class_entry *ce);
 
 typedef struct {

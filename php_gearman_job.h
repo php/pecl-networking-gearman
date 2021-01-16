@@ -28,7 +28,6 @@
 extern zend_class_entry *gearman_job_ce;
 extern zend_object_handlers gearman_job_obj_handlers;
 
-void gearman_job_free_obj(zend_object *object);
 zend_object *gearman_job_obj_new(zend_class_entry *ce);
 
 typedef enum {
