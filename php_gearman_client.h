@@ -28,6 +28,7 @@
 extern zend_class_entry *gearman_client_ce;
 extern zend_object_handlers gearman_client_obj_handlers;
 
+void gearman_client_free_obj(zend_object *object);
 zend_object *gearman_client_obj_new(zend_class_entry *ce);
 
 typedef enum {
@@ -71,52 +72,5 @@ gearman_client_obj *gearman_client_fetch_object(zend_object *obj);
 					  (__ret) == GEARMAN_WORK_EXCEPTION || \
 					  (__ret) == GEARMAN_WORK_WARNING || \
 					  (__ret) == GEARMAN_WORK_FAIL)
-
-PHP_FUNCTION(gearman_client_create);
-PHP_METHOD(GearmanClient, __construct);
-PHP_METHOD(GearmanClient, __destruct);
-PHP_FUNCTION(gearman_client_return_code);
-PHP_FUNCTION(gearman_client_error);
-PHP_FUNCTION(gearman_client_get_errno);
-PHP_FUNCTION(gearman_client_options);
-PHP_FUNCTION(gearman_client_set_options);
-PHP_FUNCTION(gearman_client_add_options);
-PHP_FUNCTION(gearman_client_remove_options);
-PHP_FUNCTION(gearman_client_timeout);
-PHP_FUNCTION(gearman_client_set_timeout);
-PHP_FUNCTION(gearman_client_add_server);
-PHP_FUNCTION(gearman_client_add_servers);
-PHP_FUNCTION(gearman_client_wait);
-PHP_FUNCTION(gearman_client_do_normal);
-PHP_FUNCTION(gearman_client_do_high);
-PHP_FUNCTION(gearman_client_do_low);
-PHP_FUNCTION(gearman_client_do_background);
-PHP_FUNCTION(gearman_client_do_high_background);
-PHP_FUNCTION(gearman_client_do_low_background);
-PHP_FUNCTION(gearman_client_do_job_handle);
-PHP_FUNCTION(gearman_client_do_status);
-PHP_FUNCTION(gearman_client_job_status);
-PHP_FUNCTION(gearman_client_job_status_by_unique_key);
-PHP_FUNCTION(gearman_client_ping);
-PHP_FUNCTION(gearman_client_add_task);
-PHP_FUNCTION(gearman_client_add_task_high);
-PHP_FUNCTION(gearman_client_add_task_low);
-PHP_FUNCTION(gearman_client_add_task_background);
-PHP_FUNCTION(gearman_client_add_task_high_background);
-PHP_FUNCTION(gearman_client_add_task_low_background);
-PHP_FUNCTION(gearman_client_run_tasks);
-PHP_FUNCTION(gearman_client_add_task_status);
-PHP_FUNCTION(gearman_client_set_workload_callback);
-PHP_FUNCTION(gearman_client_set_created_callback);
-PHP_FUNCTION(gearman_client_set_data_callback);
-PHP_FUNCTION(gearman_client_set_warning_callback);
-PHP_FUNCTION(gearman_client_set_status_callback);
-PHP_FUNCTION(gearman_client_set_complete_callback);
-PHP_FUNCTION(gearman_client_set_exception_callback);
-PHP_FUNCTION(gearman_client_set_fail_callback);
-PHP_FUNCTION(gearman_client_clear_callbacks);
-PHP_FUNCTION(gearman_client_context);
-PHP_FUNCTION(gearman_client_set_context);
-PHP_FUNCTION(gearman_client_enable_exception_handler);
 
 #endif  /* __PHP_GEARMAN_CLIENT_H */
