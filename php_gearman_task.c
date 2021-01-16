@@ -20,8 +20,8 @@ inline zend_object *gearman_task_obj_new(zend_class_entry *ce) {
                 sizeof(gearman_task_obj) +
                 zend_object_properties_size(ce));
 
-        zend_object_std_init(&(intern->std), ce); 
-        object_properties_init(&intern->std, ce); 
+        zend_object_std_init(&(intern->std), ce);
+        object_properties_init(&intern->std, ce);
         intern->task_id = 0;
 
         intern->std.handlers = &gearman_task_obj_handlers;
@@ -30,7 +30,7 @@ inline zend_object *gearman_task_obj_new(zend_class_entry *ce) {
 
 /* this function will be used to call our user defined task callbacks */
 gearman_return_t _php_task_cb_fn(gearman_task_obj *task, gearman_client_obj *client, zval zcall) {
-        gearman_return_t ret; 
+        gearman_return_t ret;
 
         zval ztask, argv[2], retval;
         uint32_t param_count;
@@ -39,31 +39,31 @@ gearman_return_t _php_task_cb_fn(gearman_task_obj *task, gearman_client_obj *cli
         ZVAL_COPY_VALUE(&argv[0], &ztask);
 
         if (Z_ISUNDEF(task->zdata)) {
-                param_count = 1; 
+                param_count = 1;
         } else {
                 ZVAL_COPY_VALUE(&argv[1], &task->zdata);
-                param_count = 2; 
-        }    
+                param_count = 2;
+        }
 
-        if (call_user_function_ex(EG(function_table), NULL, &zcall, &retval, param_count, argv, 0, NULL) != SUCCESS) {
+        if (call_user_function(EG(function_table), NULL, &zcall, &retval, param_count, argv) != SUCCESS) {
                 php_error_docref(NULL,
                                 E_WARNING,
                                 "Could not call the function %s",
                                 ( Z_ISUNDEF(zcall) || Z_TYPE(zcall) != IS_STRING)  ? "[undefined]" : Z_STRVAL(zcall)
-                                );   
-                ret = 0; 
+                                );
+                ret = 0;
         } else {
                 if (Z_ISUNDEF(retval)) {
-                        ret = 0; 
+                        ret = 0;
                 } else {
                         if (Z_TYPE(retval) != IS_LONG) {
                                 convert_to_long(&retval);
-                        }    
+                        }
                         ret = Z_LVAL(retval);
-                }    
-        }    
+                }
+        }
 
-        return ret; 
+        return ret;
 }
 
 void _php_task_free(gearman_task_st *task, void *context) {
@@ -133,7 +133,7 @@ PHP_METHOD(GearmanTask, __destruct) {
         gearman_task_obj *intern = Z_GEARMAN_TASK_P(getThis());
         if (!intern) {
                 return;
-        }    
+        }
 
         zval_dtor(&intern->zworkload);
         zval_dtor(&intern->zdata);
@@ -142,7 +142,7 @@ PHP_METHOD(GearmanTask, __destruct) {
         zend_object_std_dtor(&intern->std);
 }
 
-/* {{{ proto int gearman_task_return_code()
+/* {{{ proto ?int gearman_task_return_code()
    get last gearman_return_t */
 PHP_FUNCTION(gearman_task_return_code) {
         zval *zobj;
@@ -150,43 +150,43 @@ PHP_FUNCTION(gearman_task_return_code) {
 
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O", &zobj, gearman_task_ce) == FAILURE) {
                 RETURN_NULL();
-        }    
+        }
         obj = Z_GEARMAN_TASK_P(zobj);
 
         RETURN_LONG(obj->ret);
 }
 /* }}} */
 
-/* {{{ proto string gearman_task_function_name(object task)
+/* {{{ proto ?bool|string gearman_task_function_name(object task)
    Returns function name associated with a task. */
 PHP_FUNCTION(gearman_task_function_name) {
         zval *zobj;
         gearman_task_obj *obj;
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O", &zobj, gearman_task_ce) == FAILURE) {
                 RETURN_NULL();
-        }    
+        }
         obj = Z_GEARMAN_TASK_P(zobj);
 
         if (obj->flags & GEARMAN_TASK_OBJ_CREATED) {
                 RETURN_STRING((char *)gearman_task_function_name(obj->task));
-        }    
+        }
         RETURN_FALSE;
 }
 /* }}} */
 
-/* {{{ proto string gearman_task_unique(object task)
+/* {{{ proto ?bool|string gearman_task_unique(object task)
    Returns unique identifier for a task. */
 PHP_FUNCTION(gearman_task_unique) {
         zval *zobj;
         gearman_task_obj *obj;
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O", &zobj, gearman_task_ce) == FAILURE) {
                 RETURN_NULL();
-        }    
+        }
         obj = Z_GEARMAN_TASK_P(zobj);
 
         if (obj->flags & GEARMAN_TASK_OBJ_CREATED) {
                 RETURN_STRING((char *)gearman_task_unique(obj->task));
-        }    
+        }
         RETURN_FALSE;
 }
 /* }}} */
@@ -198,12 +198,12 @@ PHP_FUNCTION(gearman_task_job_handle) {
         gearman_task_obj *obj;
         if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O", &zobj, gearman_task_ce) == FAILURE) {
                 RETURN_NULL();
-        }    
+        }
         obj = Z_GEARMAN_TASK_P(zobj);
 
         if (obj->flags & GEARMAN_TASK_OBJ_CREATED) {
                 RETURN_STRING((char *)gearman_task_job_handle(obj->task));
-        }    
+        }
         RETURN_FALSE;
 }
 /* }}} */

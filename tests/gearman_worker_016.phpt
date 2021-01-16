@@ -1,10 +1,11 @@
 --TEST--
 GearmanWorker::addFunction(), context param
 --SKIPIF--
-<?php if (!extension_loaded("gearman")) print "skip"; ?>
+<?php if (!extension_loaded("gearman")) print "skip";
 /*
 TODO - requires gearmand to be running
 */
+?>
 --FILE--
 <?php 
 $host = 'localhost';
