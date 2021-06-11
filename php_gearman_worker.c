@@ -91,7 +91,7 @@ zend_object *gearman_worker_obj_new(zend_class_entry *ce) {
 	zend_object_std_init(&(intern->std), ce);
 	object_properties_init(&intern->std, ce);
 
-	ZVAL_NEW_ARR(&intern->cb_list);
+	array_init(&intern->cb_list);
 	zend_hash_init(Z_ARRVAL(intern->cb_list), 0, NULL, cb_list_dtor, 0);
 
 	intern->std.handlers = &gearman_worker_obj_handlers;
