@@ -334,10 +334,10 @@ class GearmanWorker {
     public function setId(string $id): bool {}
 
     /** @alias gearman_worker_add_server */
-    public function addServer(string $host = null, int $port = 0): bool {}
+    public function addServer(string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
 
     /** @alias gearman_worker_add_servers */
-    public function addServers(string $servers = null): bool {}
+    public function addServers(string $servers = null, bool $setupExceptionHandler = true): bool {}
 
     /** @alias gearman_worker_wait */
     public function wait(): bool {}
@@ -362,6 +362,9 @@ class GearmanWorker {
 
     /** @alias gearman_worker_ping */
     public function ping(string $data): bool {}
+
+    /** @alias gearman_worker_enable_exception_handler */
+    public function enableExceptionHandler(): bool {}
 }
 
 function gearman_worker_return_code(GearmanWorker $obj): ?int {}
@@ -374,8 +377,8 @@ function gearman_worker_remove_options(GearmanWorker $obj, int $option): ?bool {
 function gearman_worker_timeout(GearmanWorker $obj): ?int {}
 function gearman_worker_set_timeout(GearmanWorker $obj, int $timeout): bool {}
 function gearman_worker_set_id(GearmanWorker $obj, string $id): bool {}
-function gearman_worker_add_server(GearmanWorker $obj, string $host = null, int $port = 0): bool {}
-function gearman_worker_add_servers(GearmanWorker $obj, string $servers = null): bool {}
+function gearman_worker_add_server(GearmanWorker $obj, string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
+function gearman_worker_add_servers(GearmanWorker $obj, string $servers = null, bool $setupExceptionHandler = true): bool {}
 function gearman_worker_wait(GearmanWorker $obj): bool {}
 function gearman_worker_register(GearmanWorker $obj, string $function_name, int $timeout = 0): bool {}
 function gearman_worker_unregister(GearmanWorker $obj, string $function_name): bool {}
@@ -384,5 +387,6 @@ function gearman_worker_grab_job(GearmanWorker $obj): GearmanWorker|false {}
 function gearman_worker_add_function(GearmanWorker $obj, string $function_name, callable $function, ?mixed $context = null, int $timeout = 0): bool {}
 function gearman_worker_work(GearmanWorker $obj): bool {}
 function gearman_worker_ping(GearmanWorker $obj, string $data): bool {}
+function gearman_worker_enable_exception_handler(GearmanWorker $obj): bool {}
 
 class GearmanException extends Exception { }

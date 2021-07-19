@@ -268,7 +268,7 @@ PHP_FUNCTION(gearman_worker_set_id) {
 }
 /* }}} */
 
-/* {{{ proto bool gearman_worker_add_server(object worker [, string host [, int port ]])
+/* {{{ proto bool gearman_worker_add_server(object worker [, string host [, int port [, bool setupExceptionHandler = true]]])
    Add a job server to a worker. This goes into a list of servers than can be used to run tasks. No socket I/O happens here, it is just added to a list. */
 PHP_FUNCTION(gearman_worker_add_server) {
         zval *zobj;
@@ -276,11 +276,13 @@ PHP_FUNCTION(gearman_worker_add_server) {
         char *host = NULL;
         size_t host_len = 0;
         zend_long port = 0;
+        zend_bool setupExceptionHandler = 1;
 
-        if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O|sl", &zobj,
+        if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O|slb", &zobj,
                                                                 gearman_worker_ce,
                                                                 &host, &host_len,
-                                                                &port
+                                                                &port,
+                                                                &setupExceptionHandler
                                                                 ) == FAILURE) {
                 RETURN_FALSE;
         }
@@ -293,7 +295,7 @@ PHP_FUNCTION(gearman_worker_add_server) {
                 RETURN_FALSE;
         }
 
-        if (! gearman_worker_set_server_option(&(obj->worker), "exceptions", (sizeof("exceptions") - 1))) {
+        if (setupExceptionHandler && !gearman_worker_set_server_option(&(obj->worker), "exceptions", (sizeof("exceptions") - 1))) {
                 GEARMAN_EXCEPTION("Failed to set exception option", 0);
         }
 
@@ -301,17 +303,20 @@ PHP_FUNCTION(gearman_worker_add_server) {
 }
 /* }}} */
 
-/* {{{ proto bool gearman_worker_add_servers(object worker [, string servers])
+/* {{{ proto bool gearman_worker_add_servers(object worker [, string servers [, bool setupExceptionHandler = true]])
    Add a list of job servers to a worker. This goes into a list of servers that can be used to run tasks. No socket I/O happens here, it is just added to a list. */
 PHP_FUNCTION(gearman_worker_add_servers) {
         zval *zobj;
         gearman_worker_obj *obj;
         char *servers = NULL;
         size_t servers_len = 0;
+        zend_bool setupExceptionHandler = 1;
 
-        if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "Os", &zobj,
+        if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O|sb", &zobj,
                                                                 gearman_worker_ce,
-                                                                &servers, &servers_len
+                                                                &servers,
+                                                                &servers_len,
+                                                                &setupExceptionHandler
                                                                 ) == FAILURE) {
                 RETURN_FALSE;
         }
@@ -325,7 +330,7 @@ PHP_FUNCTION(gearman_worker_add_servers) {
                 RETURN_FALSE;
         }
 
-        if (! gearman_worker_set_server_option(&(obj->worker), "exceptions", (sizeof("exceptions") - 1))) {
+        if (setupExceptionHandler && !gearman_worker_set_server_option(&(obj->worker), "exceptions", (sizeof("exceptions") - 1))) {
                 GEARMAN_EXCEPTION("Failed to set exception option", 0);
         }
 
@@ -675,5 +680,25 @@ PHP_FUNCTION(gearman_worker_ping) {
 	}
 
 	RETURN_TRUE;
+}
+/* }}} */
+
+/* {{{ proto bool GearmanWorker::enableExceptionHandler()
+   Enable exception handling to be used by exception callback function
+   GearmanWorker::enableExceptionHandler */
+PHP_FUNCTION(gearman_worker_enable_exception_handler) {
+        gearman_worker_obj *obj;
+        zval *zobj;
+
+        if (zend_parse_method_parameters(ZEND_NUM_ARGS(), getThis(), "O", &zobj, gearman_worker_ce) == FAILURE) {
+            RETURN_FALSE;
+        }
+        obj = Z_GEARMAN_WORKER_P(zobj);
+
+        if (!gearman_worker_set_server_option(&(obj->worker), "exceptions", (sizeof("exceptions") - 1))) {
+            GEARMAN_EXCEPTION("Failed to set exception option", 0);
+        }
+
+        RETURN_TRUE;
 }
 /* }}} */
