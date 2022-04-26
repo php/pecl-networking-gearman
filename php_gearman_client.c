@@ -417,7 +417,8 @@ static void gearman_client_do_work_handler(void* (*do_work_func)(
                 RETURN_EMPTY_STRING();
         }
 
-        RETURN_STRINGL((char *)result, (long) result_size);
+        ZVAL_STRINGL(return_value, (char *)result, (long)result_size);
+        efree(result);
 }
 /* }}} */
 
