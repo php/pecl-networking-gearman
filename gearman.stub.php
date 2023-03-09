@@ -56,7 +56,7 @@ class GearmanClient {
     public function doHigh(string $function, string $workload, ?string $unique = null): string {}
 
     /** @alias gearman_client_do_low */
-    public function dolow(string $function, string $workload, ?string $unique = null): string {}
+    public function doLow(string $function, string $workload, ?string $unique = null): string {}
 
     /** @alias gearman_client_do_background */
     public function doBackground(string $function, string $workload, ?string $unique = null): string {}
@@ -83,28 +83,28 @@ class GearmanClient {
     public function ping(string $workload): bool {}
 
     /** @alias gearman_client_add_task */
-    public function addTask(string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+    public function addTask(string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
 
     /** @alias gearman_client_add_task_high */
-    public function addTaskHigh(string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+    public function addTaskHigh(string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
 
     /** @alias gearman_client_add_task_low */
-    public function addTaskLow(string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+    public function addTaskLow(string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
 
     /** @alias gearman_client_add_task_background */
-    public function addTaskBackground(string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+    public function addTaskBackground(string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
 
     /** @alias gearman_client_add_task_high_background */
-    public function addTaskHighBackground(string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+    public function addTaskHighBackground(string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
 
     /** @alias gearman_client_add_task_low_background */
-    public function addTaskLowBackground(string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+    public function addTaskLowBackground(string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
 
     /** @alias gearman_client_run_tasks */
     public function runTasks(): bool {}
 
     /** @alias gearman_client_add_task_status */
-    public function addTaskStatus (string $job_handle, ?mixed $context = null): GearmanTask {}
+    public function addTaskStatus (string $job_handle, mixed $context = null): GearmanTask {}
 
     /** @alias gearman_client_set_workload_callback */
     public function setWorkloadCallback(callable $function): bool {}
@@ -167,14 +167,14 @@ function gearman_client_do_status(GearmanClient $obj): array {}
 function gearman_client_job_status(GearmanClient $obj, string $job_handle): array {}
 function gearman_client_job_status_by_unique_key(GearmanClient $obj, string $unique_key): array {}
 function gearman_client_ping(GearmanClient $obj, string $workload): bool {}
-function gearman_client_add_task(GearmanClient $obj, string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
-function gearman_client_add_task_high(GearmanClient $obj, string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
-function gearman_client_add_task_low(GearmanClient $obj, string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
-function gearman_client_add_task_background(GearmanClient $obj, string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
-function gearman_client_add_task_high_background(GearmanClient $obj, string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
-function gearman_client_add_task_low_background(GearmanClient $obj, string $function_name, string|int|float $workload, ?mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+function gearman_client_add_task(GearmanClient $obj, string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+function gearman_client_add_task_high(GearmanClient $obj, string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+function gearman_client_add_task_low(GearmanClient $obj, string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+function gearman_client_add_task_background(GearmanClient $obj, string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+function gearman_client_add_task_high_background(GearmanClient $obj, string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
+function gearman_client_add_task_low_background(GearmanClient $obj, string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
 function gearman_client_run_tasks(GearmanClient $obj): bool {}
-function gearman_client_add_task_status(GearmanClient $obj, string $job_handle, ?mixed $context = null): GearmanTask {}
+function gearman_client_add_task_status(GearmanClient $obj, string $job_handle, mixed $context = null): GearmanTask {}
 function gearman_client_set_workload_callback(GearmanClient $obj, callable $function): bool {}
 function gearman_client_set_created_callback(GearmanClient $obj, callable $function): bool {}
 function gearman_client_set_data_callback(GearmanClient $obj, callable $function): bool {}
@@ -355,7 +355,7 @@ class GearmanWorker {
     public function grabJob(): GearmanWorker|false {}
 
     /** @alias gearman_worker_add_function */
-    public function addFunction(string $function_name, callable $function, ?mixed $context = null, int $timeout = 0): bool {}
+    public function addFunction(string $function_name, callable $function, mixed $context = null, int $timeout = 0): bool {}
 
     /** @alias gearman_worker_work */
     public function work(): bool {}
@@ -384,7 +384,7 @@ function gearman_worker_register(GearmanWorker $obj, string $function_name, int 
 function gearman_worker_unregister(GearmanWorker $obj, string $function_name): bool {}
 function gearman_worker_unregister_all(GearmanWorker $obj): bool {}
 function gearman_worker_grab_job(GearmanWorker $obj): GearmanWorker|false {}
-function gearman_worker_add_function(GearmanWorker $obj, string $function_name, callable $function, ?mixed $context = null, int $timeout = 0): bool {}
+function gearman_worker_add_function(GearmanWorker $obj, string $function_name, callable $function, mixed $context = null, int $timeout = 0): bool {}
 function gearman_worker_work(GearmanWorker $obj): bool {}
 function gearman_worker_ping(GearmanWorker $obj, string $data): bool {}
 function gearman_worker_enable_exception_handler(GearmanWorker $obj): bool {}
