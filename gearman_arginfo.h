@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: 7db1ae6e6603b0be9126ceb70d68ed76646159b7 */
+ * Stub hash: bf4285b6af333c47f5d7e36723bdede63c5ddcf5 */
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_version, 0, 0, IS_STRING, 0)
 ZEND_END_ARG_INFO()
@@ -289,11 +289,13 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_worker_add_server, 0, 1,
 	ZEND_ARG_OBJ_INFO(0, obj, GearmanWorker, 0)
 	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, host, IS_STRING, 0, "null")
 	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, port, IS_LONG, 0, "0")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, setupExceptionHandler, _IS_BOOL, 0, "true")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_worker_add_servers, 0, 1, _IS_BOOL, 0)
 	ZEND_ARG_OBJ_INFO(0, obj, GearmanWorker, 0)
 	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, servers, IS_STRING, 0, "null")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, setupExceptionHandler, _IS_BOOL, 0, "true")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_worker_wait, 0, 1, _IS_BOOL, 0)
@@ -331,6 +333,8 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_gearman_worker_ping, 0, 2, _IS_B
 	ZEND_ARG_OBJ_INFO(0, obj, GearmanWorker, 0)
 	ZEND_ARG_TYPE_INFO(0, data, IS_STRING, 0)
 ZEND_END_ARG_INFO()
+
+#define arginfo_gearman_worker_enable_exception_handler arginfo_gearman_worker_wait
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_class_GearmanClient___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
@@ -563,14 +567,9 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_GearmanWorker_setId, 0, 1,
 	ZEND_ARG_TYPE_INFO(0, id, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_GearmanWorker_addServer, 0, 0, _IS_BOOL, 0)
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, host, IS_STRING, 0, "null")
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, port, IS_LONG, 0, "0")
-ZEND_END_ARG_INFO()
+#define arginfo_class_GearmanWorker_addServer arginfo_class_GearmanClient_addServer
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_GearmanWorker_addServers, 0, 0, _IS_BOOL, 0)
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, servers, IS_STRING, 0, "null")
-ZEND_END_ARG_INFO()
+#define arginfo_class_GearmanWorker_addServers arginfo_class_GearmanClient_addServers
 
 #define arginfo_class_GearmanWorker_wait arginfo_class_GearmanClient_wait
 
@@ -597,6 +596,8 @@ ZEND_END_ARG_INFO()
 #define arginfo_class_GearmanWorker_work arginfo_class_GearmanClient_wait
 
 #define arginfo_class_GearmanWorker_ping arginfo_class_GearmanClient_setContext
+
+#define arginfo_class_GearmanWorker_enableExceptionHandler arginfo_class_GearmanClient_wait
 
 
 ZEND_FUNCTION(gearman_version);
@@ -692,6 +693,7 @@ ZEND_FUNCTION(gearman_worker_grab_job);
 ZEND_FUNCTION(gearman_worker_add_function);
 ZEND_FUNCTION(gearman_worker_work);
 ZEND_FUNCTION(gearman_worker_ping);
+ZEND_FUNCTION(gearman_worker_enable_exception_handler);
 ZEND_METHOD(GearmanClient, __construct);
 ZEND_METHOD(GearmanClient, __destruct);
 ZEND_METHOD(GearmanJob, __destruct);
@@ -794,6 +796,7 @@ static const zend_function_entry ext_functions[] = {
 	ZEND_FE(gearman_worker_add_function, arginfo_gearman_worker_add_function)
 	ZEND_FE(gearman_worker_work, arginfo_gearman_worker_work)
 	ZEND_FE(gearman_worker_ping, arginfo_gearman_worker_ping)
+	ZEND_FE(gearman_worker_enable_exception_handler, arginfo_gearman_worker_enable_exception_handler)
 	ZEND_FE_END
 };
 
@@ -908,6 +911,7 @@ static const zend_function_entry class_GearmanWorker_methods[] = {
 	ZEND_ME_MAPPING(addFunction, gearman_worker_add_function, arginfo_class_GearmanWorker_addFunction, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(work, gearman_worker_work, arginfo_class_GearmanWorker_work, ZEND_ACC_PUBLIC)
 	ZEND_ME_MAPPING(ping, gearman_worker_ping, arginfo_class_GearmanWorker_ping, ZEND_ACC_PUBLIC)
+	ZEND_ME_MAPPING(enableExceptionHandler, gearman_worker_enable_exception_handler, arginfo_class_GearmanWorker_enableExceptionHandler, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
 
