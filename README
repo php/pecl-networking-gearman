@@ -43,7 +43,7 @@ To run a simple example
 
 cd examples
 
-1. Start the gearmand server in a seperate terminal
+1. Start the gearmand server in a separate terminal:
 
 gearmand
 
