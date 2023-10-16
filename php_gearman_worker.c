@@ -98,7 +98,7 @@ zend_object *gearman_worker_obj_new(zend_class_entry *ce) {
 	return &intern->std;
 }
 
-/* {{{ proto ?int gearman_worker_return_code()
+/* {{{ proto int gearman_worker_return_code()
    get last gearman_return_t */
 PHP_FUNCTION(gearman_worker_return_code) {
         gearman_worker_obj *obj;
@@ -133,7 +133,7 @@ PHP_FUNCTION(gearman_worker_error) {
 }
 /* }}} */
 
-/* {{{ proto int|false gearman_worker_errno(object worker)
+/* {{{ proto int gearman_worker_errno(object worker)
    Value of errno in the case of a GEARMAN_ERRNO return value. */
 PHP_FUNCTION(gearman_worker_errno) {
         zval *zobj;
@@ -148,7 +148,7 @@ PHP_FUNCTION(gearman_worker_errno) {
 }
 /* }}} */
 
-/* {{{ proto ?int gearman_worker_options(object worker)
+/* {{{ proto int gearman_worker_options(object worker)
    Get options for a worker structure. */
 PHP_FUNCTION(gearman_worker_options) {
         zval *zobj;
@@ -163,7 +163,7 @@ PHP_FUNCTION(gearman_worker_options) {
 }
 /* }}} */
 
-/* {{{ proto null|true gearman_worker_set_options(object worker, constant option)
+/* {{{ proto true gearman_worker_set_options(object worker, constant option)
    Set options for a worker structure. */
 PHP_FUNCTION(gearman_worker_set_options) {
         zval *zobj;
@@ -180,7 +180,7 @@ PHP_FUNCTION(gearman_worker_set_options) {
 }
 /* }}} */
 
-/* {{{ proto null|true gearman_worker_add_options(object worker, constant option)
+/* {{{ proto true gearman_worker_add_options(object worker, constant option)
    Set options for a worker structure. */
 PHP_FUNCTION(gearman_worker_add_options) {
         zval *zobj;
@@ -197,7 +197,7 @@ PHP_FUNCTION(gearman_worker_add_options) {
 }
 /* }}} */
 
-/* {{{ proto null|true gearman_worker_remove_options(object worker, constant option)
+/* {{{ proto true gearman_worker_remove_options(object worker, constant option)
    Set options for a worker structure. */
 PHP_FUNCTION(gearman_worker_remove_options) {
         zval *zobj;
@@ -214,7 +214,7 @@ PHP_FUNCTION(gearman_worker_remove_options) {
 }
 /* }}} */
 
-/* {{{ proto ?int gearman_worker_timeout(object worker)
+/* {{{ proto int gearman_worker_timeout(object worker)
    Get timeout for a worker structure. */
 PHP_FUNCTION(gearman_worker_timeout) {
         zval *zobj;
@@ -229,7 +229,7 @@ PHP_FUNCTION(gearman_worker_timeout) {
 }
 /* }}} */
 
-/* {{{ proto bool gearman_worker_set_timeout(object worker, constant timeout)
+/* {{{ proto true gearman_worker_set_timeout(object worker, constant timeout)
    Set timeout for a worker structure. */
 PHP_FUNCTION(gearman_worker_set_timeout) {
         zval *zobj;

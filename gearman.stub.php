@@ -14,16 +14,16 @@ class GearmanClient {
     public function __destruct() {}
 
     /** @alias gearman_client_return_code */
-    public function returnCode(): ?int {}
+    public function returnCode(): int {}
 
     /** @alias gearman_client_error */
-    public function error(): string|false|null {}
+    public function error(): string|false {}
 
     /** @alias gearman_client_get_errno */
-    public function getErrno(): ?int {}
+    public function getErrno(): int {}
 
     /** @alias gearman_client_options */
-    public function options(): ?int {}
+    public function options(): int {}
 
     /** @alias gearman_client_set_options */
     public function setOptions(int $option): bool {}
@@ -35,7 +35,7 @@ class GearmanClient {
     public function removeOptions(int $option): bool {}
 
     /** @alias gearman_client_timeout */
-    public function timeout(): ?int {}
+    public function timeout(): int {}
 
     /** @alias gearman_client_set_timeout */
     public function setTimeout(int $timeout): bool {}
@@ -144,10 +144,10 @@ class GearmanClient {
 
 }
 
-function gearman_client_return_code(GearmanClient $obj): ?int {}
-function gearman_client_error(GearmanClient $obj): null|string|false {}
-function gearman_client_get_errno(GearmanClient $obj): ?int {}
-function gearman_client_options(GearmanClient $obj): ?int {}
+function gearman_client_return_code(GearmanClient $obj): int {}
+function gearman_client_error(GearmanClient $obj): string|false {}
+function gearman_client_get_errno(GearmanClient $obj): int {}
+function gearman_client_options(GearmanClient $obj): int {}
 function gearman_client_set_options(GearmanClient $obj, int $option): bool {}
 function gearman_client_add_options(GearmanClient $obj, int $option): bool {}
 function gearman_client_remove_options(GearmanClient $obj, int $option): bool {}
@@ -192,13 +192,13 @@ class GearmanJob {
     public function __destruct() {}
 
     /** @alias gearman_job_return_code */
-    public function returnCode(): ?int {}
+    public function returnCode(): int {}
 
     /** @alias gearman_job_set_return */
-    public function setReturn(int $gearman_return_t): ?bool {}
+    public function setReturn(int $gearman_return_t): bool {}
 
     /** @alias gearman_job_send_data */
-    public function sendData(string $data): ?bool {}
+    public function sendData(string $data): bool {}
 
     /** @alias gearman_job_send_warning */
     public function sendWarning(string $warning): bool {}
@@ -216,34 +216,34 @@ class GearmanJob {
     public function sendFail(): bool {}
 
     /** @alias gearman_job_handle */
-    public function handle(): bool|string {}
+    public function handle(): false|string {}
 
     /** @alias gearman_job_function_name */
-    public function functionName(): bool|string {}
+    public function functionName(): false|string {}
 
     /** @alias gearman_job_unique */
-    public function unique(): bool|string {}
+    public function unique(): false|string {}
 
     /** @alias gearman_job_workload */
     public function workload(): string {}
 
     /** @alias gearman_job_workload_size */
-    public function workloadSize(): ?int {}
+    public function workloadSize(): int {}
 }
 
-function gearman_job_return_code(GearmanJob $obj): ?int {}
-function gearman_job_set_return(GearmanJob $obj, int $gearman_return_t): ?bool {}
-function gearman_job_send_data(GearmanJob $obj, string $data): ?bool {}
+function gearman_job_return_code(GearmanJob $obj): int {}
+function gearman_job_set_return(GearmanJob $obj, int $gearman_return_t): bool {}
+function gearman_job_send_data(GearmanJob $obj, string $data): bool {}
 function gearman_job_send_warning(GearmanJob $obj, string $warning): bool {}
 function gearman_job_send_status(GearmanJob $obj, int $numerator, int $denominator): bool {}
 function gearman_job_send_complete(GearmanJob $obj, string $result): bool {}
 function gearman_job_send_exception(GearmanJob $obj, string $exception): bool {}
 function gearman_job_send_fail(GearmanJob $obj): bool {}
-function gearman_job_handle(GearmanJob $obj): bool|string {}
-function gearman_job_function_name(GearmanJob $obj): bool|string {}
-function gearman_job_unique(GearmanJob $obj): bool|string {}
+function gearman_job_handle(GearmanJob $obj): false|string {}
+function gearman_job_function_name(GearmanJob $obj): false|string {}
+function gearman_job_unique(GearmanJob $obj): false|string {}
 function gearman_job_workload(GearmanJob $obj): string {}
-function gearman_job_workload_size(GearmanJob $obj): ?int {}
+function gearman_job_workload_size(GearmanJob $obj): int {}
 
 class GearmanTask {
 
@@ -253,28 +253,28 @@ class GearmanTask {
     public function returnCode(): int {}
 
     /** @alias gearman_task_function_name */
-    public function functionName(): null|false|string {}
+    public function functionName(): false|string {}
 
     /** @alias gearman_task_unique */
-    public function unique(): bool|string {}
+    public function unique(): false|string {}
 
     /** @alias gearman_task_job_handle */
-    public function jobHandle(): null|false|string {}
+    public function jobHandle(): false|string {}
 
     /** @alias gearman_task_is_known */
-    public function isKnown(): ?bool {}
+    public function isKnown(): bool {}
 
     /** @alias gearman_task_is_running */
-    public function isRunning(): ?bool {}
+    public function isRunning(): bool {}
 
     /** @alias gearman_task_numerator */
-    public function taskNumerator(): ?bool|int {}
+    public function taskNumerator(): false|int {}
 
     /** @alias gearman_task_denominator */
-    public function taskDenominator(): ?bool|int {}
+    public function taskDenominator(): false|int {}
 
     /** @alias gearman_task_data */
-    public function data(): bool|string {}
+    public function data(): false|string {}
 
     /** @alias gearman_task_data_size */
     public function dataSize(): int|false {}
@@ -283,52 +283,52 @@ class GearmanTask {
     public function sendWorkload(string $data): int|false {}
 
     /** @alias gearman_task_recv_data */
-    public function recvData(int $data_len): null|false|array {}
+    public function recvData(int $data_len): false|array {}
 }
 
-function gearman_task_return_code(GearmanTask $obj): ?int {}
-function gearman_task_function_name(GearmanTask $obj): null|bool|string {}
-function gearman_task_unique(GearmanTask $obj): null|bool|string {}
-function gearman_task_job_handle(GearmanTask $obj): null|bool|string {}
-function gearman_task_is_known(GearmanTask $obj): ?bool {}
-function gearman_task_is_running(GearmanTask $obj): ?bool {}
-function gearman_task_numerator(GearmanTask $obj): null|bool|int {}
-function gearman_task_denominator(GearmanTask $obj): null|bool|int {}
-function gearman_task_data(GearmanTask $obj): null|bool|string {}
+function gearman_task_return_code(GearmanTask $obj): int {}
+function gearman_task_function_name(GearmanTask $obj): false|string {}
+function gearman_task_unique(GearmanTask $obj): false|string {}
+function gearman_task_job_handle(GearmanTask $obj): false|string {}
+function gearman_task_is_known(GearmanTask $obj): bool {}
+function gearman_task_is_running(GearmanTask $obj): bool {}
+function gearman_task_numerator(GearmanTask $obj): false|int {}
+function gearman_task_denominator(GearmanTask $obj): false|int {}
+function gearman_task_data(GearmanTask $obj): false|string {}
 function gearman_task_data_size(GearmanTask $obj): int|false {}
 function gearman_task_send_workload(GearmanTask $obj, string $data): int|false {}
-function gearman_task_recv_data(GearmanTask $obj, int $data_len): null|false|array {}
+function gearman_task_recv_data(GearmanTask $obj, int $data_len): false|array {}
 
 class GearmanWorker {
     public function __construct() {}
     public function __destruct() {}
 
     /** @alias gearman_worker_return_code */
-    public function returnCode(): ?int {}
+    public function returnCode(): int {}
 
     /** @alias gearman_worker_error */
     public function error(): string|false {}
 
     /** @alias gearman_worker_errno */
-    public function getErrno(): int|false {}
+    public function getErrno(): int {}
 
     /** @alias gearman_worker_options */
-    public function options(): ?int {}
+    public function options(): int {}
 
     /** @alias gearman_worker_set_options */
-    public function setOptions(int $option): ?bool {}
+    public function setOptions(int $option): true {}
 
     /** @alias gearman_worker_add_options */
-    public function addOptions(int $option): ?bool {}
+    public function addOptions(int $option): true {}
 
     /** @alias gearman_worker_remove_options */
-    public function removeOptions(int $option): ?bool {}
+    public function removeOptions(int $option): true {}
 
     /** @alias gearman_worker_timeout */
-    public function timeout(): ?int {}
+    public function timeout(): int {}
 
     /** @alias gearman_worker_set_timeout */
-    public function setTimeout(int $timeout): bool {}
+    public function setTimeout(int $timeout): true {}
 
     /** @alias gearman_worker_set_id */
     public function setId(string $id): bool {}
@@ -367,15 +367,15 @@ class GearmanWorker {
     public function enableExceptionHandler(): bool {}
 }
 
-function gearman_worker_return_code(GearmanWorker $obj): ?int {}
+function gearman_worker_return_code(GearmanWorker $obj): int {}
 function gearman_worker_error(GearmanWorker $obj): string|false {}
-function gearman_worker_errno(GearmanWorker $obj): int|false {}
-function gearman_worker_options(GearmanWorker $obj): ?int {}
-function gearman_worker_set_options(GearmanWorker $obj, int $option): ?bool {}
-function gearman_worker_add_options(GearmanWorker $obj, int $option): ?bool {}
-function gearman_worker_remove_options(GearmanWorker $obj, int $option): ?bool {}
-function gearman_worker_timeout(GearmanWorker $obj): ?int {}
-function gearman_worker_set_timeout(GearmanWorker $obj, int $timeout): bool {}
+function gearman_worker_errno(GearmanWorker $obj): int {}
+function gearman_worker_options(GearmanWorker $obj): int {}
+function gearman_worker_set_options(GearmanWorker $obj, int $option): true {}
+function gearman_worker_add_options(GearmanWorker $obj, int $option): true {}
+function gearman_worker_remove_options(GearmanWorker $obj, int $option): true {}
+function gearman_worker_timeout(GearmanWorker $obj): int {}
+function gearman_worker_set_timeout(GearmanWorker $obj, int $timeout): true {}
 function gearman_worker_set_id(GearmanWorker $obj, string $id): bool {}
 function gearman_worker_add_server(GearmanWorker $obj, string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
 function gearman_worker_add_servers(GearmanWorker $obj, string $servers = null, bool $setupExceptionHandler = true): bool {}

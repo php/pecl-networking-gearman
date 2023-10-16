@@ -113,7 +113,7 @@ void gearman_client_free_obj(zend_object *object) {
         zend_object_std_dtor(&intern->std);
 }
 
-/* {{{ proto ?int gearman_client_return_code()
+/* {{{ proto int gearman_client_return_code()
    get last gearman_return_t */
 PHP_FUNCTION(gearman_client_return_code)
 {
@@ -129,7 +129,7 @@ PHP_FUNCTION(gearman_client_return_code)
 }
 /* }}} */
 
-/* {{{ proto null|false|string gearman_client_error()
+/* {{{ proto false|string gearman_client_error()
    Return an error string for the last error encountered. */
 PHP_FUNCTION(gearman_client_error) {
         char *error = NULL;
@@ -149,7 +149,7 @@ PHP_FUNCTION(gearman_client_error) {
 }
 /* }}} */
 
-/* {{{ proto ?int gearman_client_get_errno()
+/* {{{ proto int gearman_client_get_errno()
    Value of errno in the case of a GEARMAN_ERRNO return value. */
 PHP_FUNCTION(gearman_client_get_errno) {
         gearman_client_obj *obj;
@@ -164,7 +164,7 @@ PHP_FUNCTION(gearman_client_get_errno) {
 }
 /* }}} */
 
-/* {{{ proto ?int gearman_client_options()
+/* {{{ proto int gearman_client_options()
    Get options for a client structure. */
 PHP_FUNCTION(gearman_client_options) {
         gearman_client_obj *obj;
@@ -234,7 +234,7 @@ PHP_FUNCTION(gearman_client_remove_options) {
 }
 /* }}} */
 
-/* {{{ proto ?int GearmanClient::timeout()
+/* {{{ proto int GearmanClient::timeout()
    Get current socket I/O activity timeout value */
 PHP_FUNCTION(gearman_client_timeout) {
         gearman_client_obj *obj;
