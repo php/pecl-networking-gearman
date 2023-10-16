@@ -14,16 +14,16 @@ class GearmanClient {
     public function __destruct() {}
 
     /** @alias gearman_client_return_code */
-    public function returnCode(): int {}
+    public function returnCode(): ?int {}
 
     /** @alias gearman_client_error */
-    public function error(): string|false {}
+    public function error(): string|false|null {}
 
     /** @alias gearman_client_get_errno */
-    public function getErrno(): int {}
+    public function getErrno(): ?int {}
 
     /** @alias gearman_client_options */
-    public function options(): int {}
+    public function options(): ?int {}
 
     /** @alias gearman_client_set_options */
     public function setOptions(int $option): bool {}
@@ -35,7 +35,7 @@ class GearmanClient {
     public function removeOptions(int $option): bool {}
 
     /** @alias gearman_client_timeout */
-    public function timeout(): int {}
+    public function timeout(): ?int {}
 
     /** @alias gearman_client_set_timeout */
     public function setTimeout(int $timeout): bool {}
@@ -104,7 +104,7 @@ class GearmanClient {
     public function runTasks(): bool {}
 
     /** @alias gearman_client_add_task_status */
-    public function addTaskStatus (string $job_handle, mixed $context = null): GearmanTask {}
+    public function addTaskStatus (string $job_handle, mixed $context = null): GearmanTask|false {}
 
     /** @alias gearman_client_set_workload_callback */
     public function setWorkloadCallback(callable $function): bool {}
@@ -174,7 +174,7 @@ function gearman_client_add_task_background(GearmanClient $obj, string $function
 function gearman_client_add_task_high_background(GearmanClient $obj, string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
 function gearman_client_add_task_low_background(GearmanClient $obj, string $function_name, string|int|float $workload, mixed $context = null, ?string $unique_key = null): GearmanTask|false {}
 function gearman_client_run_tasks(GearmanClient $obj): bool {}
-function gearman_client_add_task_status(GearmanClient $obj, string $job_handle, mixed $context = null): GearmanTask {}
+function gearman_client_add_task_status(GearmanClient $obj, string $job_handle, mixed $context = null): GearmanTask|false {}
 function gearman_client_set_workload_callback(GearmanClient $obj, callable $function): bool {}
 function gearman_client_set_created_callback(GearmanClient $obj, callable $function): bool {}
 function gearman_client_set_data_callback(GearmanClient $obj, callable $function): bool {}
@@ -253,25 +253,25 @@ class GearmanTask {
     public function returnCode(): int {}
 
     /** @alias gearman_task_function_name */
-    public function functionName(): bool|string {}
+    public function functionName(): null|false|string {}
 
     /** @alias gearman_task_unique */
     public function unique(): bool|string {}
 
     /** @alias gearman_task_job_handle */
-    public function jobHandle(): bool|string {}
+    public function jobHandle(): null|false|string {}
 
     /** @alias gearman_task_is_known */
-    public function isKnown(): bool {}
+    public function isKnown(): ?bool {}
 
     /** @alias gearman_task_is_running */
-    public function isRunning(): bool {}
+    public function isRunning(): ?bool {}
 
     /** @alias gearman_task_numerator */
-    public function taskNumerator(): bool|int {}
+    public function taskNumerator(): ?bool|int {}
 
     /** @alias gearman_task_denominator */
-    public function taskDenominator(): bool|int {}
+    public function taskDenominator(): ?bool|int {}
 
     /** @alias gearman_task_data */
     public function data(): bool|string {}
@@ -283,7 +283,7 @@ class GearmanTask {
     public function sendWorkload(string $data): int|false {}
 
     /** @alias gearman_task_recv_data */
-    public function recvData(int $data_len): bool|array {}
+    public function recvData(int $data_len): null|false|array {}
 }
 
 function gearman_task_return_code(GearmanTask $obj): ?int {}
@@ -297,7 +297,7 @@ function gearman_task_denominator(GearmanTask $obj): null|bool|int {}
 function gearman_task_data(GearmanTask $obj): null|bool|string {}
 function gearman_task_data_size(GearmanTask $obj): int|false {}
 function gearman_task_send_workload(GearmanTask $obj, string $data): int|false {}
-function gearman_task_recv_data(GearmanTask $obj, int $data_len): bool|array {}
+function gearman_task_recv_data(GearmanTask $obj, int $data_len): null|false|array {}
 
 class GearmanWorker {
     public function __construct() {}
