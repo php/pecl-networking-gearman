@@ -42,7 +42,7 @@ zend_object *gearman_job_obj_new(zend_class_entry *ce) {
         return &intern->std;
 }
 
-/* {{{ proto ?int gearman_job_return_code()
+/* {{{ proto int gearman_job_return_code()
    get last gearman_return_t */
 PHP_FUNCTION(gearman_job_return_code) {
         gearman_job_obj *obj;
@@ -57,7 +57,7 @@ PHP_FUNCTION(gearman_job_return_code) {
 }
 /* }}} */
 
-/* {{{ proto ?bool gearman_job_set_return(int gearman_return_t)
+/* {{{ proto bool gearman_job_set_return(int gearman_return_t)
    This function will set a return value of a job */
 PHP_FUNCTION(gearman_job_set_return) {
         zval *zobj;
@@ -83,7 +83,7 @@ PHP_FUNCTION(gearman_job_set_return) {
 }
 /* }}} */
 
-/* {{{ proto ?bool gearman_job_send_data(object job, string data)
+/* {{{ proto bool gearman_job_send_data(object job, string data)
    Send data for a running job. */
 PHP_FUNCTION(gearman_job_send_data) {
         zval *zobj;
@@ -240,7 +240,7 @@ PHP_FUNCTION(gearman_job_send_fail) {
 }
 /* }}} */
 
-/* {{{ proto ?bool|string gearman_job_handle(object job)
+/* {{{ proto false|string gearman_job_handle(object job)
    Return job handle. */
 PHP_FUNCTION(gearman_job_handle) {
 	zval *zobj;
@@ -260,7 +260,7 @@ PHP_FUNCTION(gearman_job_handle) {
 }
 /* }}} */
 
-/* {{{ proto ?bool|string gearman_job_function_name(object job)
+/* {{{ proto false|string gearman_job_function_name(object job)
    Return the function name associated with a job. */
 PHP_FUNCTION(gearman_job_function_name) {
 	zval *zobj;
@@ -280,7 +280,7 @@ PHP_FUNCTION(gearman_job_function_name) {
 }
 /* }}} */
 
-/* {{{ proto ?bool|string gearman_job_unique(object job)
+/* {{{ proto false|string gearman_job_unique(object job)
    Get the unique ID associated with a job. */
 PHP_FUNCTION(gearman_job_unique) {
 	zval *zobj;
@@ -300,7 +300,7 @@ PHP_FUNCTION(gearman_job_unique) {
 }
 /* }}} */
 
-/* {{{ proto ?string gearman_job_workload(object job)
+/* {{{ proto string gearman_job_workload(object job)
    Returns the workload for a job. */
 PHP_FUNCTION(gearman_job_workload) {
 	zval *zobj;
@@ -320,7 +320,7 @@ PHP_FUNCTION(gearman_job_workload) {
 }
 /* }}} */
 
-/* {{{ proto ?int gearman_job_workload_size(object job)
+/* {{{ proto int gearman_job_workload_size(object job)
    Returns size of the workload for a job. */
 PHP_FUNCTION(gearman_job_workload_size) {
 	zval *zobj;

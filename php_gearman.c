@@ -70,7 +70,7 @@ PHP_FUNCTION(gearman_bugreport) {
 }
 /* }}} */
 
-/* {{{ proto string gearman_verbose_name(constant verbose)
+/* {{{ proto ?string gearman_verbose_name(constant verbose)
    Returns string with the name of the given verbose level */
 PHP_FUNCTION(gearman_verbose_name) {
 	zend_long verbose;
