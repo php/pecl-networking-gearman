@@ -36,7 +36,7 @@ static void gearman_client_ctor(INTERNAL_FUNCTION_PARAMETERS) {
         gearman_client_set_task_context_free_fn(&(client->client), _php_task_free);
 }
 
-/* {{{ proto object gearman_client_create()
+/* {{{ proto false|object gearman_client_create()
    Returns a GearmanClient object */
 PHP_FUNCTION(gearman_client_create) {
         if (object_init_ex(return_value, gearman_client_ce) != SUCCESS) {
@@ -113,7 +113,7 @@ void gearman_client_free_obj(zend_object *object) {
         zend_object_std_dtor(&intern->std);
 }
 
-/* {{{ proto int gearman_client_return_code()
+/* {{{ proto ?int gearman_client_return_code()
    get last gearman_return_t */
 PHP_FUNCTION(gearman_client_return_code)
 {
@@ -129,7 +129,7 @@ PHP_FUNCTION(gearman_client_return_code)
 }
 /* }}} */
 
-/* {{{ proto string gearman_client_error()
+/* {{{ proto null|false|string gearman_client_error()
    Return an error string for the last error encountered. */
 PHP_FUNCTION(gearman_client_error) {
         char *error = NULL;
@@ -149,7 +149,7 @@ PHP_FUNCTION(gearman_client_error) {
 }
 /* }}} */
 
-/* {{{ proto int gearman_client_get_errno()
+/* {{{ proto ?int gearman_client_get_errno()
    Value of errno in the case of a GEARMAN_ERRNO return value. */
 PHP_FUNCTION(gearman_client_get_errno) {
         gearman_client_obj *obj;
@@ -164,7 +164,7 @@ PHP_FUNCTION(gearman_client_get_errno) {
 }
 /* }}} */
 
-/* {{{ proto int gearman_client_options()
+/* {{{ proto ?int gearman_client_options()
    Get options for a client structure. */
 PHP_FUNCTION(gearman_client_options) {
         gearman_client_obj *obj;
@@ -179,7 +179,7 @@ PHP_FUNCTION(gearman_client_options) {
 }
 /* }}} */
 
-/* {{{ proto void gearman_client_set_options(constant option)
+/* {{{ proto bool gearman_client_set_options(constant option)
    Set options for a client structure.
    NOTE: this is deprecated in gearmand */
 PHP_FUNCTION(gearman_client_set_options) {
@@ -198,7 +198,7 @@ PHP_FUNCTION(gearman_client_set_options) {
 }
 /* }}} */
 
-/* {{{ proto void GearmanClient::addOptions(constant option)
+/* {{{ proto bool GearmanClient::addOptions(constant option)
    Set options for a client structure. */
 PHP_FUNCTION(gearman_client_add_options) {
         zend_long options;
@@ -216,7 +216,7 @@ PHP_FUNCTION(gearman_client_add_options) {
 }
 /* }}} */
 
-/* {{{ proto void GearmanClient::removeOptions(constant option)
+/* {{{ proto bool GearmanClient::removeOptions(constant option)
    Set options for a client structure. */
 PHP_FUNCTION(gearman_client_remove_options) {
         zend_long options;
@@ -234,7 +234,7 @@ PHP_FUNCTION(gearman_client_remove_options) {
 }
 /* }}} */
 
-/* {{{ proto int GearmanClient::timeout()
+/* {{{ proto ?int GearmanClient::timeout()
    Get current socket I/O activity timeout value */
 PHP_FUNCTION(gearman_client_timeout) {
         gearman_client_obj *obj;
@@ -249,7 +249,7 @@ PHP_FUNCTION(gearman_client_timeout) {
 }
 /* }}} */
 
-/* {{{ proto void gearman_client_set_timeout(object, constant timeout)
+/* {{{ proto bool gearman_client_set_timeout(object, constant timeout)
    Set timeout for a client structure. */
 PHP_FUNCTION(gearman_client_set_timeout) {
         zend_long timeout;
@@ -365,7 +365,7 @@ PHP_FUNCTION(gearman_client_wait) {
 }
 /* }}} */
 
-/* {{{ proto object gearman_client_do_work_handler(void *add_task_func, object client, string function, zval workload [, string unique ])
+/* {{{ proto string gearman_client_do_work_handler(void *add_task_func, object client, string function, zval workload [, string unique ])
    Run a task, high/normal/low dependent upon do_work_func */
 static void gearman_client_do_work_handler(void* (*do_work_func)(
                                                                 gearman_client_st *client,
@@ -443,7 +443,7 @@ PHP_FUNCTION(gearman_client_do_low) {
 }
 /* }}} */
 
-/* {{{ proto object gearman_client_do_background_work_handler(void *add_task_func, object client, string function, zval workload [, string unique ])
+/* {{{ proto string gearman_client_do_background_work_handler(void *add_task_func, object client, string function, zval workload [, string unique ])
    Run a task in the background, high/normal/low dependent upon do_work_func */
 static void gearman_client_do_background_work_handler(gearman_return_t (*do_background_work_func)(
                                                                 gearman_client_st *client,
@@ -651,7 +651,7 @@ PHP_FUNCTION(gearman_client_ping) {
 }
 /* }}} */
 
-/* {{{ proto object gearman_client_add_task_handler(void *add_task_func, object client, string function, zval workload [, string unique ])
+/* {{{ proto false|object gearman_client_add_task_handler(void *add_task_func, object client, string function, zval workload [, string unique ])
    Add a task to be run in parallel, background or not, high/normal/low dependent upon add_task_func. */
 static void gearman_client_add_task_handler(gearman_task_st* (*add_task_func)(
                                                                 gearman_client_st *client,
@@ -739,42 +739,42 @@ static void gearman_client_add_task_handler(gearman_task_st* (*add_task_func)(
 }
 /* }}} */
 
-/* {{{ proto object GearmanClient::addTask(string function, zval workload [, string unique ])
+/* {{{ proto false|object GearmanClient::addTask(string function, zval workload [, string unique ])
    Add a task to be run in parallel. */
 PHP_FUNCTION(gearman_client_add_task) {
         gearman_client_add_task_handler(gearman_client_add_task, INTERNAL_FUNCTION_PARAM_PASSTHRU);
 }
 /* }}} */
 
-/* {{{ proto object GearmanClient::addTaskHigh(string function, zval workload [, string unique ])
+/* {{{ proto false|object GearmanClient::addTaskHigh(string function, zval workload [, string unique ])
    Add a high priority task to be run in parallel. */
 PHP_FUNCTION(gearman_client_add_task_high) {
         gearman_client_add_task_handler(gearman_client_add_task_high, INTERNAL_FUNCTION_PARAM_PASSTHRU);
 }
 /* }}} */
 
-/* {{{ proto object GearmanClient::addTaskLow(string function, zval workload [, string unique ])
+/* {{{ proto false|object GearmanClient::addTaskLow(string function, zval workload [, string unique ])
    Add a low priority task to be run in parallel. */
 PHP_FUNCTION(gearman_client_add_task_low) {
         gearman_client_add_task_handler(gearman_client_add_task_low, INTERNAL_FUNCTION_PARAM_PASSTHRU);
 }
 /* }}} */
 
-/* {{{ proto object GearmanClient::addTaskBackground(string function, zval workload [, string unique ])
+/* {{{ proto false|object GearmanClient::addTaskBackground(string function, zval workload [, string unique ])
    Add a background task to be run in parallel. */
 PHP_FUNCTION(gearman_client_add_task_background) {
         gearman_client_add_task_handler(gearman_client_add_task_background, INTERNAL_FUNCTION_PARAM_PASSTHRU);
 }
 /* }}} */
 
-/* {{{ proto object GearmanClient::addTaskHighBackground(string function, zval workload [, string unique ])
+/* {{{ proto false|object GearmanClient::addTaskHighBackground(string function, zval workload [, string unique ])
    Add a high priority background task to be run in parallel. */
 PHP_FUNCTION(gearman_client_add_task_high_background) {
         gearman_client_add_task_handler(gearman_client_add_task_high_background, INTERNAL_FUNCTION_PARAM_PASSTHRU);
 }
 /* }}} */
 
-/* {{{ proto object GearmanClient::addTaskLowBackground(string function, zval workload [, string unique ])
+/* {{{ proto false|object GearmanClient::addTaskLowBackground(string function, zval workload [, string unique ])
    Add a low priority background task to be run in parallel. */
 PHP_FUNCTION(gearman_client_add_task_low_background) {
         gearman_client_add_task_handler(gearman_client_add_task_low_background, INTERNAL_FUNCTION_PARAM_PASSTHRU);
@@ -807,7 +807,7 @@ PHP_FUNCTION(gearman_client_run_tasks) {
 /* this function is used to request status information from the gearmand
  * server. it will then call your predefined status callback, passing
  * zdata/context to it */
-/* {{{ proto object gearman_client_add_task_status(object client, string job_handle [, zval data])
+/* {{{ proto false|object gearman_client_add_task_status(object client, string job_handle [, zval data])
    Add task to get the status for a backgound task in parallel. */
 PHP_FUNCTION(gearman_client_add_task_status) {
         zval *zdata = NULL;

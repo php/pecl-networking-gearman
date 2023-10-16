@@ -155,7 +155,7 @@ PHP_FUNCTION(gearman_task_return_code) {
 }
 /* }}} */
 
-/* {{{ proto ?bool|string gearman_task_function_name(object task)
+/* {{{ proto null|false|string gearman_task_function_name(object task)
    Returns function name associated with a task. */
 PHP_FUNCTION(gearman_task_function_name) {
         zval *zobj;
@@ -189,7 +189,7 @@ PHP_FUNCTION(gearman_task_unique) {
 }
 /* }}} */
 
-/* {{{ proto string gearman_task_job_handle(object task)
+/* {{{ proto null|false|string gearman_task_job_handle(object task)
    Returns job handle for a task. */
 PHP_FUNCTION(gearman_task_job_handle) {
         zval *zobj;
@@ -205,7 +205,7 @@ PHP_FUNCTION(gearman_task_job_handle) {
         RETURN_FALSE;
 }
 /* }}} */
-/* {{{ proto bool gearman_task_is_known(object task)
+/* {{{ proto ?bool gearman_task_is_known(object task)
    Get status on whether a task is known or not */
 PHP_FUNCTION(gearman_task_is_known) {
 	zval *zobj;
@@ -223,7 +223,7 @@ PHP_FUNCTION(gearman_task_is_known) {
 /* }}} */
 
 
-/* {{{ proto bool gearman_task_is_running(object task)
+/* {{{ proto ?bool gearman_task_is_running(object task)
    Get status on whether a task is running or not */
 PHP_FUNCTION(gearman_task_is_running) {
 	zval *zobj;
@@ -241,7 +241,7 @@ PHP_FUNCTION(gearman_task_is_running) {
 /* }}} */
 
 
-/* {{{ proto int gearman_task_numerator(object task)
+/* {{{ proto ?bool|int gearman_task_numerator(object task)
    Returns the numerator of percentage complete for a task. */
 PHP_FUNCTION(gearman_task_numerator) {
 	zval *zobj;
@@ -259,7 +259,7 @@ PHP_FUNCTION(gearman_task_numerator) {
 /* }}} */
 
 
-/* {{{ proto int gearman_task_denominator(object task)
+/* {{{ proto ?bool|int gearman_task_denominator(object task)
    Returns the denominator of percentage complete for a task. */
 PHP_FUNCTION(gearman_task_denominator) {
 	zval *zobj;
@@ -275,7 +275,7 @@ PHP_FUNCTION(gearman_task_denominator) {
 	RETURN_FALSE;
 }
 /* }}} */
-/* {{{ proto string gearman_task_data(object task)
+/* {{{ proto null|false|string gearman_task_data(object task)
    Get data being returned for a task. */
 PHP_FUNCTION(gearman_task_data) {
 	zval *zobj;
@@ -300,7 +300,7 @@ PHP_FUNCTION(gearman_task_data) {
 /* }}} */
 
 
-/* {{{ proto int gearman_task_data_size(object task)
+/* {{{ proto false|int gearman_task_data_size(object task)
    Get data size being returned for a task. */
 PHP_FUNCTION(gearman_task_data_size) {
 	zval *zobj;
@@ -318,7 +318,7 @@ PHP_FUNCTION(gearman_task_data_size) {
 /* }}} */
 
 
-/* {{{ proto int gearman_task_send_workload(object task, string data)
+/* {{{ proto false|int gearman_task_send_workload(object task, string data)
    NOT-TESTED Send packet data for a task. */
 PHP_FUNCTION(gearman_task_send_workload) {
 	zval *zobj;
@@ -351,7 +351,7 @@ PHP_FUNCTION(gearman_task_send_workload) {
 /* }}} */
 
 
-/* {{{ proto array gearman_task_recv_data(object task, long buffer_size)
+/* {{{ proto null|false|array gearman_task_recv_data(object task, long buffer_size)
    NOT-TESTED Read work or result data into a buffer for a task. */
 PHP_FUNCTION(gearman_task_recv_data) {
 	zval *zobj;

@@ -148,7 +148,7 @@ PHP_FUNCTION(gearman_worker_errno) {
 }
 /* }}} */
 
-/* {{{ proto int gearman_worker_options(object worker)
+/* {{{ proto ?int gearman_worker_options(object worker)
    Get options for a worker structure. */
 PHP_FUNCTION(gearman_worker_options) {
         zval *zobj;
@@ -163,7 +163,7 @@ PHP_FUNCTION(gearman_worker_options) {
 }
 /* }}} */
 
-/* {{{ proto void gearman_worker_set_options(object worker, constant option)
+/* {{{ proto null|true gearman_worker_set_options(object worker, constant option)
    Set options for a worker structure. */
 PHP_FUNCTION(gearman_worker_set_options) {
         zval *zobj;
@@ -180,7 +180,7 @@ PHP_FUNCTION(gearman_worker_set_options) {
 }
 /* }}} */
 
-/* {{{ proto void gearman_worker_add_options(object worker, constant option)
+/* {{{ proto null|true gearman_worker_add_options(object worker, constant option)
    Set options for a worker structure. */
 PHP_FUNCTION(gearman_worker_add_options) {
         zval *zobj;
@@ -197,7 +197,7 @@ PHP_FUNCTION(gearman_worker_add_options) {
 }
 /* }}} */
 
-/* {{{ proto void gearman_worker_remove_options(object worker, constant option)
+/* {{{ proto null|true gearman_worker_remove_options(object worker, constant option)
    Set options for a worker structure. */
 PHP_FUNCTION(gearman_worker_remove_options) {
         zval *zobj;
@@ -214,7 +214,7 @@ PHP_FUNCTION(gearman_worker_remove_options) {
 }
 /* }}} */
 
-/* {{{ proto int gearman_worker_timeout(object worker)
+/* {{{ proto ?int gearman_worker_timeout(object worker)
    Get timeout for a worker structure. */
 PHP_FUNCTION(gearman_worker_timeout) {
         zval *zobj;
@@ -229,7 +229,7 @@ PHP_FUNCTION(gearman_worker_timeout) {
 }
 /* }}} */
 
-/* {{{ proto void gearman_worker_set_timeout(object worker, constant timeout)
+/* {{{ proto bool gearman_worker_set_timeout(object worker, constant timeout)
    Set timeout for a worker structure. */
 PHP_FUNCTION(gearman_worker_set_timeout) {
         zval *zobj;
@@ -246,7 +246,7 @@ PHP_FUNCTION(gearman_worker_set_timeout) {
 }
 /* }}} */
 
-/* {{{ proto void gearman_worker_set_id(object worker, string id)
+/* {{{ proto bool gearman_worker_set_id(object worker, string id)
    Set id for a worker structure. */
 PHP_FUNCTION(gearman_worker_set_id) {
         zval *zobj;
@@ -440,7 +440,7 @@ PHP_FUNCTION(gearman_worker_unregister_all) {
 }
 /* }}} */
 
-/* {{{ proto object gearman_worker_grab_job(obect worker)
+/* {{{ proto false|object gearman_worker_grab_job(obect worker)
    Get a job from one of the job servers.
    Note: EXPERIMENTAL - This is undocumented on php.net and needs a test*/
 PHP_FUNCTION(gearman_worker_grab_job) {
@@ -627,7 +627,7 @@ PHP_FUNCTION(gearman_worker_add_function) {
 }
 /* }}} */
 
-/* {{{ proto int gearman_worker_work(object worker)
+/* {{{ proto bool gearman_worker_work(object worker)
 	Wait for a job and call the appropriate callback function when it gets one. */
 PHP_FUNCTION(gearman_worker_work) {
 	zval *zobj = NULL;
