@@ -28,7 +28,7 @@
  </stability>
  <license uri="http://www.php.net/license">PHP</license>
  <notes>
-PHP 8.0.x is now supported
+PHP 8 is now supported
  </notes>
  <contents>
   <dir name="/">
@@ -150,6 +150,24 @@ PHP 8.0.x is now supported
  <providesextension>gearman</providesextension>
  <extsrcrelease />
  <changelog>
+
+  <release>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <version>
+    <release>2.1.0</release>
+    <api>2.1.0</api>
+   </version>
+   <date>2024-04-02</date>
+   <notes>
+- Compatibility fix - remove ZVAL_NEW_ARR usage
+- add Param to skip exception handling setup in addServer/addServers in GearmanWorker class
+- fix memory leak in GearmanClient::doXXX methods
+- fix some proto and stubs types
+   </notes>
+  </release>
 
   <release>
    <stability>

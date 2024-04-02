@@ -1,3 +1,10 @@
+Version 2.1.1
+-------------
+- Compatibility fix - remove ZVAL_NEW_ARR usage
+- add Param to skip exception handling setup in addServer/addServers in GearmanWorker class
+- fix memory leak in GearmanClient::doXXX methods
+- fix some proto and stubs types
+
 Version 2.1.0
 -------------
 - PHP 8.0 support
