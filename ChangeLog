@@ -1,3 +1,7 @@
+Version 2.1.2
+-------------
+- Bump max PHP version so pecl will install for PHP 8.2 and 8.3 as well
+
 Version 2.1.1
 -------------
 - Compatibility fix - remove ZVAL_NEW_ARR usage
