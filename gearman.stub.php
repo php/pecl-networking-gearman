@@ -41,10 +41,10 @@ class GearmanClient {
     public function setTimeout(int $timeout): bool {}
 
     /** @alias gearman_client_add_server */
-    public function addServer(string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
+    public function addServer(?string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
 
     /** @alias gearman_client_add_servers */
-    public function addServers(string $servers = null, bool $setupExceptionHandler = true): bool {}
+    public function addServers(?string $servers = null, bool $setupExceptionHandler = true): bool {}
 
     /** @alias gearman_client_wait */
     public function wait(): bool {}
@@ -153,8 +153,8 @@ function gearman_client_add_options(GearmanClient $obj, int $option): bool {}
 function gearman_client_remove_options(GearmanClient $obj, int $option): bool {}
 function gearman_client_timeout(GearmanClient $obj): ?int {}
 function gearman_client_set_timeout(GearmanClient $obj, int $timeout): bool {}
-function gearman_client_add_server(GearmanClient $obj, string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
-function gearman_client_add_servers(GearmanClient $obj, string $servers = null, bool $setupExceptionHandler = true): bool {}
+function gearman_client_add_server(GearmanClient $obj, ?string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
+function gearman_client_add_servers(GearmanClient $obj, ?string $servers = null, bool $setupExceptionHandler = true): bool {}
 function gearman_client_wait(GearmanClient $obj): bool {}
 function gearman_client_do_normal(GearmanClient $obj, string $function, string $workload, ?string $unique = null): string {}
 function gearman_client_do_high(GearmanClient $obj, string $function, string $workload, ?string $unique = null): string {}
@@ -334,10 +334,10 @@ class GearmanWorker {
     public function setId(string $id): bool {}
 
     /** @alias gearman_worker_add_server */
-    public function addServer(string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
+    public function addServer(?string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
 
     /** @alias gearman_worker_add_servers */
-    public function addServers(string $servers = null, bool $setupExceptionHandler = true): bool {}
+    public function addServers(?string $servers = null, bool $setupExceptionHandler = true): bool {}
 
     /** @alias gearman_worker_wait */
     public function wait(): bool {}
@@ -377,8 +377,8 @@ function gearman_worker_remove_options(GearmanWorker $obj, int $option): true {}
 function gearman_worker_timeout(GearmanWorker $obj): int {}
 function gearman_worker_set_timeout(GearmanWorker $obj, int $timeout): true {}
 function gearman_worker_set_id(GearmanWorker $obj, string $id): bool {}
-function gearman_worker_add_server(GearmanWorker $obj, string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
-function gearman_worker_add_servers(GearmanWorker $obj, string $servers = null, bool $setupExceptionHandler = true): bool {}
+function gearman_worker_add_server(GearmanWorker $obj, ?string $host = null, int $port = 0, bool $setupExceptionHandler = true): bool {}
+function gearman_worker_add_servers(GearmanWorker $obj, ?string $servers = null, bool $setupExceptionHandler = true): bool {}
 function gearman_worker_wait(GearmanWorker $obj): bool {}
 function gearman_worker_register(GearmanWorker $obj, string $function_name, int $timeout = 0): bool {}
 function gearman_worker_unregister(GearmanWorker $obj, string $function_name): bool {}

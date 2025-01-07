@@ -138,7 +138,7 @@ PHP 8 is now supported
  <dependencies>
   <required>
    <php>
-    <min>7.0.0</min>
+    <min>7.1.0</min>
     <max>8.4.99</max>
     <exclude>6.0.0</exclude>
    </php>
@@ -150,6 +150,21 @@ PHP 8 is now supported
  <providesextension>gearman</providesextension>
  <extsrcrelease />
  <changelog>
+
+  <release>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <version>
+    <release>2.1.4</release>
+    <api>2.1.4</api>
+   </version>
+   <date>2025-01-07</date>
+   <notes>
+- Bump min PHP version to PHP 7.1
+   </notes>
+  </release>
 
   <release>
    <stability>
