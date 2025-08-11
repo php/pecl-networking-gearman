@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,14 +17,14 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
-        version: ['8.0', '8.1', '8.2', '8.3']
+        version: ['8.0', '8.1', '8.2', '8.3', '8.4']
         stable: [true]
         include:
           - os: ubuntu-latest
-            version: '8.4'
+            version: '8.5'
             stable: false
           - os: macos-latest
-            version: '8.4'
+            version: '8.5'
             stable: false
     steps:
       - name: Setup PHP
