@@ -1,0 +1,65 @@
+name: Continuous Integration Tests
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: PHP ${{ matrix.version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ !matrix.stable }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        version: ['8.0', '8.1', '8.2', '8.3']
+        stable: [true]
+        include:
+          - os: ubuntu-latest
+            version: '8.4'
+            stable: false
+          - os: macos-latest
+            version: '8.4'
+            stable: false
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.version }}
+
+      - uses: actions/checkout@v4
+
+      - name: Install gearman on macOS
+        if: ${{ matrix.os == 'macos-latest' }}
+        run: brew install gearman
+
+      - name: Install gearman on Linux
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: sudo apt-get install libgearman-dev
+
+      - name: Run phpize
+        run: phpize
+
+      - name: Configure macOS
+        if: ${{ matrix.os == 'macos-latest' }}
+        run: ./configure --with-gearman=$(brew --prefix gearman)
+
+      - name: Configure Linux
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: ./configure --with-gearman
+
+      - name: Make extension
+        run: make
+
+      - name: Run tests
+        run: make test
+
+      - name: Install extension
+        run: sudo make install
+
+      - name: Check if installed correctly
+        run: php -dextension="gearman" -m | grep gearman
