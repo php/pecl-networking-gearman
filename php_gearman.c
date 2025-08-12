@@ -120,7 +120,7 @@ PHP_MINIT_FUNCTION(gearman) {
 	gearman_job_obj_handlers.offset = XtOffsetOf(gearman_job_obj, std);
 
 	/* XXX exception class */
-	INIT_CLASS_ENTRY(ce, "GearmanException", class_GearmanException_methods)
+	INIT_CLASS_ENTRY(ce, "GearmanException", NULL)
 	gearman_exception_ce = zend_register_internal_class_ex(&ce, zend_ce_exception);
 	gearman_exception_ce->ce_flags |= ZEND_ACC_FINAL;
 	zend_declare_property_long(gearman_exception_ce, "code", sizeof("code")-1, 0, ZEND_ACC_PUBLIC);
