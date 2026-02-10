@@ -83,7 +83,9 @@ PHP_METHOD(GearmanClient, __destruct)
 
         if (intern->flags & GEARMAN_CLIENT_OBJ_CREATED) {
                 context = gearman_client_context(&(intern->client));
-                efree(context);
+                if (context) {
+                        efree(context);
+                }
 
                 gearman_client_free(&intern->client);
                 intern->flags &= ~GEARMAN_CLIENT_OBJ_CREATED;
@@ -416,7 +418,7 @@ static void gearman_client_do_work_handler(void* (*do_work_func)(
                 RETURN_EMPTY_STRING();
         }
 
-        ZVAL_STRINGL(return_value, (char *)result, (long)result_size);
+        ZVAL_STRINGL(return_value, (char *)result, result_size);
         efree(result);
 }
 /* }}} */
@@ -488,11 +490,6 @@ static void gearman_client_do_background_work_handler(gearman_return_t (*do_back
         if (! PHP_GEARMAN_CLIENT_RET_OK(obj->ret)) {
                 php_error_docref(NULL, E_WARNING, "%s",
                                                  gearman_client_error(&(obj->client)));
-                zend_string_release(job_handle);
-                RETURN_EMPTY_STRING();
-        }
-
-        if (! job_handle) {
                 zend_string_release(job_handle);
                 RETURN_EMPTY_STRING();
         }
@@ -1251,7 +1248,9 @@ PHP_FUNCTION(gearman_client_set_context) {
         obj = Z_GEARMAN_CLIENT_P(zobj);
 
         old_context = gearman_client_context(&(obj->client));
-        efree(old_context);
+        if (old_context) {
+                efree(old_context);
+        }
 
         gearman_client_set_context(&(obj->client), (void*) estrndup(data, data_len));
         RETURN_TRUE;

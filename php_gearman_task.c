@@ -293,7 +293,7 @@ PHP_FUNCTION(gearman_task_data) {
 		data = gearman_task_data(obj->task);
 		data_len = gearman_task_data_size(obj->task);
 
-		RETURN_STRINGL((char *)data, (long) data_len);
+		RETURN_STRINGL((char *)data, data_len);
 	}
 	RETURN_FALSE;
 }
@@ -378,12 +378,13 @@ PHP_FUNCTION(gearman_task_recv_data) {
 		!gearman_client_has_option(&Z_GEARMAN_CLIENT_P(&obj->zclient)->client, GEARMAN_CLIENT_UNBUFFERED_RESULT)) {
 		php_error_docref(NULL, E_WARNING,  "%s",
 						 gearman_client_error(&Z_GEARMAN_CLIENT_P(&obj->zclient)->client));
+		efree(data_buffer);
 		RETURN_FALSE;
 	}
 
 	array_init(return_value);
-	add_next_index_long(return_value, (long)data_len);
-	add_next_index_stringl(return_value, (char *)data_buffer,
-						  (long)data_len);
+	add_next_index_long(return_value, data_len);
+	add_next_index_stringl(return_value, (char *)data_buffer, data_len);
+	efree(data_buffer);
 }
 /* }}} */

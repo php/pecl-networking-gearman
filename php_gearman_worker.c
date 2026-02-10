@@ -57,6 +57,17 @@ PHP_METHOD(GearmanWorker, __construct) {
 }
 /* }}} */
 
+void gearman_worker_free_obj(zend_object *object) {
+        gearman_worker_obj *intern = gearman_worker_fetch_object(object);
+        if (!intern) {
+                return;
+        }
+
+        zval_dtor(&intern->cb_list);
+
+        zend_object_std_dtor(&intern->std);
+}
+
 /* {{{ proto object GearmanWorker::__destruct()
    Destroys a worker object */
 PHP_METHOD(GearmanWorker, __destruct) {
@@ -70,8 +81,6 @@ PHP_METHOD(GearmanWorker, __destruct) {
 		gearman_worker_free(&(intern->worker));
 		intern->flags &= ~GEARMAN_WORKER_OBJ_CREATED;
 	}
-
-	zval_dtor(&intern->cb_list);
 }
 /* }}} */
 
@@ -473,7 +482,7 @@ static void *_php_worker_function_callback(gearman_job_st *job,
                                                 void *context,
                                                 size_t *result_size,
                                                 gearman_return_t *ret_ptr) {
-        zval zjob, message;
+        zval zjob;
         gearman_job_obj *jobj;
         gearman_worker_cb_obj *worker_cb = (gearman_worker_cb_obj *)context;
         char *result = NULL;
@@ -516,9 +525,7 @@ static void *_php_worker_function_callback(gearman_job_st *job,
         if (EG(exception)) {
                 *ret_ptr = GEARMAN_WORK_EXCEPTION;
 
-                ZVAL_STRING(&message, "Unable to add worker function");
-
-                jobj->ret = gearman_job_send_exception(jobj->job, Z_STRVAL(message), Z_STRLEN(message));
+                jobj->ret = gearman_job_send_exception(jobj->job, "Unable to add worker function", sizeof("Unable to add worker function") - 1);
 
                 if (jobj->ret != GEARMAN_SUCCESS && jobj->ret != GEARMAN_IO_WAIT) {
                         php_error_docref(NULL, E_WARNING,  "Unable to add worker function: %s",
