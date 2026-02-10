@@ -59,8 +59,10 @@ PHP_METHOD(GearmanWorker, __construct) {
 
 void gearman_worker_free_obj(zend_object *object) {
         gearman_worker_obj *intern = gearman_worker_fetch_object(object);
-        if (!intern) {
-                return;
+
+        if (intern->flags & GEARMAN_WORKER_OBJ_CREATED) {
+                gearman_worker_free(&(intern->worker));
+                intern->flags &= ~GEARMAN_WORKER_OBJ_CREATED;
         }
 
         zval_dtor(&intern->cb_list);
