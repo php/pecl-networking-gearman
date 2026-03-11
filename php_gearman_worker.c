@@ -26,7 +26,7 @@ static void gearman_worker_ctor(INTERNAL_FUNCTION_PARAMETERS) {
 	worker = Z_GEARMAN_WORKER_P(return_value);
 
 	if (gearman_worker_create(&(worker->worker)) == NULL) {
-		zval_dtor(return_value);
+		zval_ptr_dtor_nogc(return_value);
 		GEARMAN_EXCEPTION("Memory allocation failure", 0);
 	}
 
@@ -65,7 +65,7 @@ void gearman_worker_free_obj(zend_object *object) {
                 intern->flags &= ~GEARMAN_WORKER_OBJ_CREATED;
         }
 
-        zval_dtor(&intern->cb_list);
+        zval_ptr_dtor_nogc(&intern->cb_list);
 
         zend_object_std_dtor(&intern->std);
 }
@@ -88,9 +88,9 @@ PHP_METHOD(GearmanWorker, __destruct) {
 
 static inline void cb_list_dtor(zval *zv) {
 	gearman_worker_cb_obj *worker_cb = Z_PTR_P(zv);
-	zval_dtor(&worker_cb->zname);
-	zval_dtor(&worker_cb->zdata);
-	zval_dtor(&worker_cb->zcall);
+	zval_ptr_dtor_nogc(&worker_cb->zname);
+	zval_ptr_dtor_nogc(&worker_cb->zdata);
+	zval_ptr_dtor_nogc(&worker_cb->zcall);
 	efree(worker_cb);
 }
 
@@ -471,7 +471,7 @@ PHP_FUNCTION(gearman_worker_grab_job) {
         if (obj->ret != GEARMAN_SUCCESS && obj->ret != GEARMAN_IO_WAIT) {
                 php_error_docref(NULL, E_WARNING, "%s",
                                                  gearman_worker_error(&(obj->worker)));
-                zval_dtor(return_value);
+                zval_ptr_dtor_nogc(return_value);
                 RETURN_FALSE;
         }
 
@@ -544,15 +544,15 @@ static void *_php_worker_function_callback(gearman_job_st *job,
                 }
                 result = estrndup(Z_STRVAL(retval), Z_STRLEN(retval));
                 *result_size = Z_STRLEN(retval);
-                zval_dtor(&retval);
+                zval_ptr_dtor_nogc(&retval);
         }
 
         if (!Z_ISUNDEF(argv[0])) {
-                zval_dtor(&argv[0]);
+                zval_ptr_dtor_nogc(&argv[0]);
         }
 
         if (!Z_ISUNDEF(argv[1])) {
-                zval_dtor(&argv[1]);
+                zval_ptr_dtor_nogc(&argv[1]);
         }
 
 
