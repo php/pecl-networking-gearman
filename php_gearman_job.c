@@ -316,7 +316,7 @@ PHP_FUNCTION(gearman_job_workload) {
 	workload = gearman_job_workload(obj->job);
 	workload_len = gearman_job_workload_size(obj->job);
 
-	RETURN_STRINGL((char *)workload, (long) workload_len);
+	RETURN_STRINGL((char *)workload, workload_len);
 }
 /* }}} */
 

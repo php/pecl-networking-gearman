@@ -112,6 +112,7 @@ PHP_MINIT_FUNCTION(gearman) {
 	gearman_worker_ce->create_object = gearman_worker_obj_new;
 	memcpy(&gearman_worker_obj_handlers, zend_get_std_object_handlers(), sizeof(gearman_worker_obj_handlers));
 	gearman_worker_obj_handlers.offset = XtOffsetOf(gearman_worker_obj, std);
+	gearman_worker_obj_handlers.free_obj = gearman_worker_free_obj;
 
 	INIT_CLASS_ENTRY(ce, "GearmanJob", class_GearmanJob_methods);
 	gearman_job_ce = zend_register_internal_class(&ce);
