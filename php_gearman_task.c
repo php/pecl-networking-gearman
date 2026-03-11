@@ -133,9 +133,9 @@ void gearman_task_free_obj(zend_object *object) {
                 return;
         }
 
-        zval_dtor(&intern->zworkload);
-        zval_dtor(&intern->zdata);
-        zval_dtor(&intern->zclient);
+        zval_ptr_dtor_nogc(&intern->zworkload);
+        zval_ptr_dtor_nogc(&intern->zdata);
+        zval_ptr_dtor_nogc(&intern->zclient);
 
         zend_object_std_dtor(&intern->std);
 }

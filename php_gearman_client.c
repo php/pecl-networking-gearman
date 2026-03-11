@@ -101,16 +101,16 @@ void gearman_client_free_obj(zend_object *object) {
         }
 
         // Clear Callbacks
-        zval_dtor(&intern->zworkload_fn);
-        zval_dtor(&intern->zcreated_fn);
-        zval_dtor(&intern->zdata_fn);
-        zval_dtor(&intern->zwarning_fn);
-        zval_dtor(&intern->zstatus_fn);
-        zval_dtor(&intern->zcomplete_fn);
-        zval_dtor(&intern->zexception_fn);
-        zval_dtor(&intern->zfail_fn);
+        zval_ptr_dtor_nogc(&intern->zworkload_fn);
+        zval_ptr_dtor_nogc(&intern->zcreated_fn);
+        zval_ptr_dtor_nogc(&intern->zdata_fn);
+        zval_ptr_dtor_nogc(&intern->zwarning_fn);
+        zval_ptr_dtor_nogc(&intern->zstatus_fn);
+        zval_ptr_dtor_nogc(&intern->zcomplete_fn);
+        zval_ptr_dtor_nogc(&intern->zexception_fn);
+        zval_ptr_dtor_nogc(&intern->zfail_fn);
 
-        zval_dtor(&intern->task_list);
+        zval_ptr_dtor_nogc(&intern->task_list);
 
         zend_object_std_dtor(&intern->std);
 }
@@ -883,7 +883,7 @@ PHP_FUNCTION(gearman_client_set_workload_callback) {
 
 	/* Defining callback again? Clean up old one first */
 	if (!Z_ISUNDEF(obj->zworkload_fn)) {
-		zval_dtor(&obj->zworkload_fn);
+		zval_ptr_dtor_nogc(&obj->zworkload_fn);
 	}
 
 	/* store the cb in client object */
@@ -922,7 +922,7 @@ PHP_FUNCTION(gearman_client_set_created_callback) {
 
 	/* Defining callback again? Clean up old one first */
 	if (!Z_ISUNDEF(obj->zcreated_fn)) {
-		zval_dtor(&obj->zcreated_fn);
+		zval_ptr_dtor_nogc(&obj->zcreated_fn);
 	}
 
 	/* store the cb in client object */
@@ -961,7 +961,7 @@ PHP_FUNCTION(gearman_client_set_data_callback) {
 
 	/* Defining callback again? Clean up old one first */
 	if (!Z_ISUNDEF(obj->zdata_fn)) {
-		zval_dtor(&obj->zdata_fn);
+		zval_ptr_dtor_nogc(&obj->zdata_fn);
 	}
 
 	/* store the cb in client object */
@@ -1000,7 +1000,7 @@ PHP_FUNCTION(gearman_client_set_warning_callback) {
 
 	/* Defining callback again? Clean up old one first */
 	if (!Z_ISUNDEF(obj->zwarning_fn)) {
-		zval_dtor(&obj->zwarning_fn);
+		zval_ptr_dtor_nogc(&obj->zwarning_fn);
 	}
 
 	/* store the cb in client object */
@@ -1040,7 +1040,7 @@ PHP_FUNCTION(gearman_client_set_status_callback) {
 
 	/* Defining callback again? Clean up old one first */
 	if (!Z_ISUNDEF(obj->zstatus_fn)) {
-		zval_dtor(&obj->zstatus_fn);
+		zval_ptr_dtor_nogc(&obj->zstatus_fn);
 	}
 
 	/* store the cb in client object */
@@ -1079,7 +1079,7 @@ PHP_FUNCTION(gearman_client_set_complete_callback) {
 
 	/* Defining callback again? Clean up old one first */
 	if (!Z_ISUNDEF(obj->zcomplete_fn)) {
-		zval_dtor(&obj->zcomplete_fn);
+		zval_ptr_dtor_nogc(&obj->zcomplete_fn);
 	}
 
 	/* store the cb in client object */
@@ -1122,7 +1122,7 @@ PHP_FUNCTION(gearman_client_set_exception_callback) {
 
 	/* Defining callback again? Clean up old one first */
 	if (!Z_ISUNDEF(obj->zexception_fn)) {
-		zval_dtor(&obj->zexception_fn);
+		zval_ptr_dtor_nogc(&obj->zexception_fn);
 	}
 
 	/* store the cb in client object */
@@ -1162,7 +1162,7 @@ PHP_FUNCTION(gearman_client_set_fail_callback) {
 
 	/* Defining callback again? Clean up old one first */
 	if (!Z_ISUNDEF(obj->zfail_fn)) {
-		zval_dtor(&obj->zfail_fn);
+		zval_ptr_dtor_nogc(&obj->zfail_fn);
 	}
 
 	/* store the cb in client object */
@@ -1188,21 +1188,21 @@ PHP_FUNCTION(gearman_client_clear_callbacks) {
 
         gearman_client_clear_fn(&obj->client);
 
-        zval_dtor(&obj->zworkload_fn);
+        zval_ptr_dtor_nogc(&obj->zworkload_fn);
         ZVAL_UNDEF(&obj->zworkload_fn);
-        zval_dtor(&obj->zcreated_fn);
+        zval_ptr_dtor_nogc(&obj->zcreated_fn);
         ZVAL_UNDEF(&obj->zcreated_fn);
-        zval_dtor(&obj->zdata_fn);
+        zval_ptr_dtor_nogc(&obj->zdata_fn);
         ZVAL_UNDEF(&obj->zdata_fn);
-        zval_dtor(&obj->zwarning_fn);
+        zval_ptr_dtor_nogc(&obj->zwarning_fn);
         ZVAL_UNDEF(&obj->zwarning_fn);
-        zval_dtor(&obj->zstatus_fn);
+        zval_ptr_dtor_nogc(&obj->zstatus_fn);
         ZVAL_UNDEF(&obj->zstatus_fn);
-        zval_dtor(&obj->zcomplete_fn);
+        zval_ptr_dtor_nogc(&obj->zcomplete_fn);
         ZVAL_UNDEF(&obj->zcomplete_fn);
-        zval_dtor(&obj->zexception_fn);
+        zval_ptr_dtor_nogc(&obj->zexception_fn);
         ZVAL_UNDEF(&obj->zexception_fn);
-        zval_dtor(&obj->zfail_fn);
+        zval_ptr_dtor_nogc(&obj->zfail_fn);
         ZVAL_UNDEF(&obj->zfail_fn);
 
         RETURN_TRUE;
