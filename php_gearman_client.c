@@ -17,7 +17,7 @@
 #include "php_gearman_client.h"
 
 inline gearman_client_obj *gearman_client_fetch_object(zend_object *obj) {
-       return (gearman_client_obj *)((char*)(obj) - XtOffsetOf(gearman_client_obj, std));
+       return (gearman_client_obj *)((char*)(obj) - offsetof(gearman_client_obj, std));
 }
 
 static void gearman_client_ctor(INTERNAL_FUNCTION_PARAMETERS) {
