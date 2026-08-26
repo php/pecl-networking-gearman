@@ -12,7 +12,7 @@
 #include "php_gearman_task.h"
 
 inline gearman_task_obj *gearman_task_fetch_object(zend_object *obj) {
-        return (gearman_task_obj *)((char*)(obj) - XtOffsetOf(gearman_task_obj, std));
+        return (gearman_task_obj *)((char*)(obj) - offsetof(gearman_task_obj, std));
 }
 
 inline zend_object *gearman_task_obj_new(zend_class_entry *ce) {

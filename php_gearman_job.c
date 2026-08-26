@@ -12,7 +12,7 @@
 #include "php_gearman_job.h"
 
 inline gearman_job_obj *gearman_job_fetch_object(zend_object *obj) {
-        return (gearman_job_obj *)((char*)(obj) - XtOffsetOf(gearman_job_obj, std));
+        return (gearman_job_obj *)((char*)(obj) - offsetof(gearman_job_obj, std));
 }
 
 /* {{{ proto object GearmanJob::__destruct()
