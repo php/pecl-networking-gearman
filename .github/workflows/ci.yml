@@ -25,7 +25,7 @@ jobs:
         with:
           php-version: ${{ matrix.version }}
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install gearman on macOS
         if: ${{ matrix.os == 'macos-latest' }}
